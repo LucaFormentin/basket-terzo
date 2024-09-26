@@ -1,0 +1,57 @@
+[
+  {
+    "fineId": "A-01",
+    "name": "Lodo barone",
+    "penitence": "3€"
+  },
+  {
+    "fineId": "A-02",
+    "name": "Lay-up sbagliato",
+    "penitence": "1€"
+  },
+  {
+    "fineId": "B-01",
+    "name": "Ritardo allenamento",
+    "penitence": "3€"
+  },
+  {
+    "fineId": "A-03",
+    "name": "0/2 ai liberi",
+    "penitence": "3€"
+  },
+  {
+    "fineId": "C-01",
+    "name": "Fallo tecnico",
+    "penitence": "5€"
+  },
+  {
+    "fineId": "C-02",
+    "name": "Fallo antisportivo",
+    "penitence": "5€"
+  },
+  {
+    "fineId": "C-03",
+    "name": "Espulsione",
+    "penitence": "10€"
+  },
+  {
+    "fineId": "B-02",
+    "name": "Dimenticato scarpe",
+    "penitence": "3€"
+  },
+  {
+    "fineId": "B-03",
+    "name": "Dimenticato seconda maglia",
+    "penitence": "3€"
+  },
+  {
+    "fineId": "B-04",
+    "name": "Dimenticato documento",
+    "penitence": "5€"
+  },
+  {
+    "fineId": "D-01",
+    "name": "Multe non saldate",
+    "penitence": "5€"
+  }
+]

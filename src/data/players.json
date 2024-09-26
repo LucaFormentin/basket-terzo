@@ -1,0 +1,82 @@
+[
+  {
+    "firstName": "Gianluca",
+    "lastName": "Cappello",
+    "number": "03"
+  },
+  {
+    "firstName": "Luca",
+    "lastName": "Formentin",
+    "number": "04"
+  },
+  {
+    "firstName": "Andrea",
+    "lastName": "Velicogna",
+    "number": "05"
+  },
+  {
+    "firstName": "Leonardo",
+    "lastName": "Scrosoppi",
+    "number": "06"
+  },
+  {
+    "firstName": "Giorgio",
+    "lastName": "Morsut",
+    "number": "07"
+  },
+  {
+    "firstName": "Lorenzo",
+    "lastName": "Mazza",
+    "number": "09"
+  },
+  {
+    "firstName": "Riccardo",
+    "lastName": "Scrosoppi",
+    "number": "10"
+  },
+  {
+    "firstName": "Luca",
+    "lastName": "Ena",
+    "number": "11"
+  },
+  {
+    "firstName": "Jacopo",
+    "lastName": "Gobbo",
+    "number": "13"
+  },
+  {
+    "firstName": "Jacopo",
+    "lastName": "Buzzin",
+    "number": "14"
+  },
+  {
+    "firstName": "Nicolò",
+    "lastName": "Gigante",
+    "number": "15"
+  },
+  {
+    "firstName": "Francesco",
+    "lastName": "Allegrini",
+    "number": "16"
+  },
+  {
+    "firstName": "Francesco",
+    "lastName": "Magron",
+    "number": "20"
+  },
+  {
+    "firstName": "Riccardo",
+    "lastName": "Sardella",
+    "number": "21"
+  },
+  {
+    "firstName": "Samuele",
+    "lastName": "Bramuzzo",
+    "number": "22"
+  },
+  {
+    "firstName": "Alessandro",
+    "lastName": "Stefanovich",
+    "number": "23"
+  }
+]

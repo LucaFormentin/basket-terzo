@@ -1,0 +1,23 @@
+.container {
+  @apply bg-zinc-950 border-2 rounded-md border-blue-800;
+}
+
+.container > div {
+  @apply border-b border-blue-950;
+}
+
+.container > div#actions {
+  @apply border-none;
+}
+
+#actions {
+  @apply flex gap-3 p-3;
+}
+
+#actions > button {
+  @apply text-white p-2 border rounded-md border-blue-950 disabled:text-opacity-20;
+}
+
+#select-fine-btn {
+  @apply border-none bg-blue-800 disabled:bg-blue-800/20;
+}

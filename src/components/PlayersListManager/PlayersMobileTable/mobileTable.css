@@ -1,0 +1,73 @@
+.center-item {
+  @apply flex items-center justify-center;
+}
+
+.players-list {
+  @apply flex flex-col gap-3;
+}
+
+.player-row {
+  @apply flex flex-col gap-1;
+}
+
+/** Player Info Row */
+.player-info-row {
+  @apply p-3 border-2 rounded-md border-blue-800 center-item gap-2;
+}
+
+.player-number {
+  @apply w-12 h-12 relative;
+}
+
+.player-number > img {
+  @apply block;
+}
+
+.player-number > span {
+  @apply absolute inset-0 top-2 flex items-center justify-center;
+}
+
+.player-name {
+  @apply flex flex-col;
+}
+
+.player-name > span:nth-child(1) {
+  @apply text-xl font-semibold;
+}
+
+.player-name > span:nth-child(2) {
+  @apply text-xs;
+}
+
+.player-fines {
+  @apply flex gap-2 ml-auto;
+}
+
+.player-fines > span {
+  @apply w-6 h-6 rounded-full center-item;
+}
+
+/** Player History Row */
+.player-history {
+  @apply bg-gray-900 border border-blue-950 rounded-md p-3 flex flex-col gap-3;
+}
+
+.player-history > span {
+  @apply text-xs;
+}
+
+.player-history-table-row {
+  @apply border-b border-blue-950 text-sm flex items-center;
+}
+
+.tr-info {
+  @apply flex flex-col;
+}
+
+.paid-status-chip {
+  @apply ml-auto w-32;
+}
+
+.paid-status-chip > div {
+  @apply w-full;
+}
