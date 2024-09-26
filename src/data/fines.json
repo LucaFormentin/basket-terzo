@@ -1,21 +1,11 @@
 [
   {
-    "fineId": "A-01",
-    "name": "Lodo barone",
-    "penitence": "3€"
-  },
-  {
-    "fineId": "A-02",
-    "name": "Lay-up sbagliato",
-    "penitence": "1€"
-  },
-  {
     "fineId": "B-01",
     "name": "Ritardo allenamento",
     "penitence": "3€"
   },
   {
-    "fineId": "A-03",
+    "fineId": "A-01",
     "name": "0/2 ai liberi",
     "penitence": "3€"
   },
