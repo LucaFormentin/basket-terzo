@@ -16,7 +16,7 @@ const Homepage = (props: Props) => {
           height={256}
         />
         <h1 className='text-5xl font-bold text-center'>Basket Terzo</h1>
-        <h1 className='text-base text-center'>Web App by Luca Formentin</h1>
+        <h1 className='text-base text-center'>Web App</h1>
       </div>
       <Button
         component={Link}
