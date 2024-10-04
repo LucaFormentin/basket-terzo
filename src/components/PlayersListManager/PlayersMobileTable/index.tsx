@@ -1,6 +1,7 @@
 import './mobileTable.css'
 import { type PlayerInfo } from '@/types/player'
 import PlayerRow from './PlayerRow'
+import { motion } from 'framer-motion'
 
 type Props = {
   playersData: PlayerInfo[]
@@ -11,7 +12,17 @@ const PlayersMobileTable = ({ playersData }: Props) => {
     <PlayerRow key={index} playerInfo={player} />
   ))
 
-  return <section className='players-list'>{playersRows}</section>
+  return (
+    <motion.section
+      className='players-list'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      {playersRows}
+    </motion.section>
+  )
 }
 
 export default PlayersMobileTable

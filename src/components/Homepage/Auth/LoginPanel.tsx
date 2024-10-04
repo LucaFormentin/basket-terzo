@@ -1,10 +1,10 @@
 import React from 'react'
-import './auth.css'
 import { AdminPanelSettingsRounded } from '@mui/icons-material'
 import { useUserCtx } from '@/app/context/UserContext'
 import { useRouter } from 'next/navigation'
 import { useForm } from '@tanstack/react-form'
 import { api } from '@/lib/api-client'
+import * as motion from 'framer-motion/client'
 
 type Props = {
   onLoginExit: () => void
@@ -45,7 +45,13 @@ const LoginPanel = (props: Props) => {
   })
 
   return (
-    <>
+    <motion.fieldset
+      className='panel-container'
+      initial={{ opacity: 0, y: 50, scale: 0.8 }}
+      animate={{ opacity: 1, y: 0, scale: 1.0 }}
+      exit={{ opacity: 0, y: -50, scale: 0.8 }}
+      transition={{ duration: 0.3 }}
+    >
       <legend className='mx-auto text-center'>
         <AdminPanelSettingsRounded sx={{ fontSize: 80, margin: 'auto' }} />
         <span>Accedi come ADMIN</span>
@@ -106,7 +112,7 @@ const LoginPanel = (props: Props) => {
       <p className='text-sm underline' onClick={props.onLoginExit}>
         Back to home
       </p>
-    </>
+    </motion.fieldset>
   )
 }
 

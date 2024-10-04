@@ -4,6 +4,8 @@ import Image from 'next/image'
 import DefaultPanel from './DefaultPanel'
 import { useState } from 'react'
 import LoginPanel from './Auth/LoginPanel'
+import './home-panels.css'
+import { AnimatePresence } from 'framer-motion'
 
 const Homepage = () => {
   const [showLoginPanel, setShowLoginPanel] = useState(false)
@@ -20,13 +22,13 @@ const Homepage = () => {
         <h1 className='text-5xl font-bold text-center'>Basket Terzo</h1>
         <h1 className='text-base text-center'>Web App</h1>
       </div>
-      <fieldset className='bg-blue-950 rounded-3xl p-4 flex flex-col items-center justify-center gap-4'>
+      <AnimatePresence mode='wait'>
         {showLoginPanel ? (
-          <LoginPanel onLoginExit={() => setShowLoginPanel(false)} />
+          <LoginPanel key='login-panel' onLoginExit={() => setShowLoginPanel(false)} />
         ) : (
-          <DefaultPanel onAdminClick={() => setShowLoginPanel(true)} />
+          <DefaultPanel key='default-panel' onAdminClick={() => setShowLoginPanel(true)} />
         )}
-      </fieldset>
+      </AnimatePresence>
     </div>
   )
 }
