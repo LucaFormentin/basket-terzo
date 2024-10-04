@@ -1,0 +1,11 @@
+form {
+  @apply flex flex-col items-center gap-4;
+}
+
+input {
+  @apply rounded-3xl border-2 border-blue-800 bg-blue-800/30 p-4;
+}
+
+#login-btn {
+  @apply bg-blue-800 text-white p-4 rounded-3xl w-full;
+}

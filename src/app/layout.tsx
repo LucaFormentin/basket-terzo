@@ -8,6 +8,7 @@ import { AppProvider } from './provider'
 import { AppContextProvider } from './context/AppContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { UserContextProvider } from './context/UserContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +26,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <AppContextProvider>{props.children}</AppContextProvider>
+              <AppContextProvider>
+                <UserContextProvider>{props.children}</UserContextProvider>
+              </AppContextProvider>
             </ThemeProvider>
           </AppRouterCacheProvider>
         </AppProvider>

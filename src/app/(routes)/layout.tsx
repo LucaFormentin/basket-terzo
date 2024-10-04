@@ -1,9 +1,9 @@
 'use client'
 
 import Footer from '@/components/Navigation/Footer'
-import { type ReactNode } from 'react'
+import React from 'react'
 
-const RoutesLayout = ({ children }: { children: ReactNode }) => {
+const RoutesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {children}

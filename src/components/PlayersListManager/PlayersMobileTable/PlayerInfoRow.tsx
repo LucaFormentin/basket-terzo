@@ -8,6 +8,7 @@ import { type PlayerInfo } from '@/types/player'
 import { useAppCtx } from '@/app/context/AppContext'
 import { cn } from '@/lib/utils/helpers'
 import Link from 'next/link'
+import { useUserCtx } from '@/app/context/UserContext'
 
 type Props = {
   info: PlayerInfo
@@ -17,6 +18,7 @@ type Props = {
 
 const PlayerInfoRow = ({ info, ...props }: Props) => {
   const { playerStatus } = useAppCtx()
+  const { role } = useUserCtx()
 
   const stillToPaySpan = (
     <span className={cn(info.stillToPay > 0 ? 'bg-red-600' : 'bg-gray-700')}>
@@ -57,12 +59,14 @@ const PlayerInfoRow = ({ info, ...props }: Props) => {
         {stillToPaySpan}
         {paidSpan}
       </div>
-      <IconButton
-        LinkComponent={Link}
-        href={`/lista-multe/aggiungi-multa?firebaseKey=${info.firebaseKey}`}
-      >
-        <GavelRounded />
-      </IconButton>
+      {role === 'ADMIN' && (
+        <IconButton
+          LinkComponent={Link}
+          href={`/lista-multe/aggiungi-multa?firebaseKey=${info.firebaseKey}`}
+        >
+          <GavelRounded />
+        </IconButton>
+      )}
     </div>
   )
 }

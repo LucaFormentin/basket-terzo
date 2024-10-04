@@ -1,6 +1,8 @@
+import { useUserCtx } from '@/app/context/UserContext'
 import { type FineDb } from '@/types/fine'
 import { DoneRounded } from '@mui/icons-material'
 import { Chip } from '@mui/material'
+import React from 'react'
 
 type Props = {
   finesList: FineDb[]
@@ -8,6 +10,8 @@ type Props = {
 }
 
 const PlayerHistoryTable = (props: Props) => {
+  const { role } = useUserCtx()
+
   let finesList = props.finesList.sort((a, b) => {
     if (a.paid && !b.paid) return 1
     if (!a.paid && b.paid) return -1
@@ -23,8 +27,10 @@ const PlayerHistoryTable = (props: Props) => {
           label='Da pagare'
           color='error'
           size='small'
-          onDelete={() => props.onConvertToPaidFine(fine._id)}
-          deleteIcon={<DoneRounded />}
+          {...(role === 'ADMIN' && {
+            onDelete: () => props.onConvertToPaidFine(fine._id),
+            deleteIcon: <DoneRounded />,
+          })}
         />
       )
 

@@ -1,13 +1,15 @@
-import { ArrowForwardRounded } from '@mui/icons-material'
-import { Box, Button } from '@mui/material'
+'use client'
+
 import Image from 'next/image'
-import Link from 'next/link'
+import DefaultPanel from './DefaultPanel'
+import { useState } from 'react'
+import LoginPanel from './Auth/LoginPanel'
 
-type Props = {}
+const Homepage = () => {
+  const [showLoginPanel, setShowLoginPanel] = useState(false)
 
-const Homepage = (props: Props) => {
   return (
-    <div className='grid content-center place-content-center min-h-screen gap-20'>
+    <div className='grid content-center place-content-center min-h-screen gap-10'>
       <div className='flex flex-col items-center justify-center'>
         <Image
           src={'/assets/logo-lg.png'}
@@ -18,14 +20,13 @@ const Homepage = (props: Props) => {
         <h1 className='text-5xl font-bold text-center'>Basket Terzo</h1>
         <h1 className='text-base text-center'>Web App</h1>
       </div>
-      <Button
-        component={Link}
-        href='/lista-multe'
-        endIcon={<ArrowForwardRounded />}
-        className='w-3/4 mx-auto rounded ring-2 ring-blue-500 p-4 bg-blue-500/50 ring-offset-4 ring-offset-black'
-      >
-        Gestisci Multe
-      </Button>
+      <fieldset className='bg-blue-950 rounded-3xl p-4 flex flex-col items-center justify-center gap-4'>
+        {showLoginPanel ? (
+          <LoginPanel onLoginExit={() => setShowLoginPanel(false)} />
+        ) : (
+          <DefaultPanel onAdminClick={() => setShowLoginPanel(true)} />
+        )}
+      </fieldset>
     </div>
   )
 }
