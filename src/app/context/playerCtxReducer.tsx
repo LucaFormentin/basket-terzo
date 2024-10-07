@@ -17,7 +17,7 @@ export const reducerInitialState: ReducerStateType = {
   },
 }
 
-export const appCtxReducer = (
+export const playerCtxReducer = (
   state: ReducerStateType,
   action: ReducerActionType
 ) => {

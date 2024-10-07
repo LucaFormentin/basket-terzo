@@ -5,10 +5,10 @@ import CssBaseline from '@mui/material/CssBaseline'
 import theme from '@/style/theme'
 import { Metadata } from 'next'
 import { AppProvider } from './provider'
-import { AppContextProvider } from './context/AppContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { UserContextProvider } from './context/UserContext'
+import { PlayerContextProvider } from './context/PlayerContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,9 +26,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <AppContextProvider>
+              <PlayerContextProvider>
                 <UserContextProvider>{props.children}</UserContextProvider>
-              </AppContextProvider>
+              </PlayerContextProvider>
             </ThemeProvider>
           </AppRouterCacheProvider>
         </AppProvider>

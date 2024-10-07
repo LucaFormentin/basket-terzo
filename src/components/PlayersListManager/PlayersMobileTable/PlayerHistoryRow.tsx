@@ -1,4 +1,4 @@
-import { useAppCtx } from "@/app/context/AppContext"
+import { usePlayerCtx } from "@/app/context/PlayerContext"
 import { api } from "@/lib/api-client"
 import { type FineDb } from "@/types/fine"
 import { Collapse } from "@mui/material"
@@ -12,7 +12,7 @@ type Props = {
 
 const PlayerHistoryRow = (props: Props) => {
   const queryClient = useQueryClient()
-  const { updatePlayerStatus } = useAppCtx()
+  const { updatePlayerStatus } = usePlayerCtx()
 
   const { status, data, error } = useQuery<{ data: FineDb[] }>({
     queryKey: ['finesList', props.playerFirebaseKey],

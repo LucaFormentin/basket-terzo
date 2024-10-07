@@ -1,6 +1,6 @@
 'use client'
 
-import { useAppCtx } from '@/app/context/AppContext'
+import { usePlayerCtx } from '@/app/context/PlayerContext'
 import { api } from '@/lib/api-client'
 import { type BaseFine } from '@/types/fine'
 import { CloseRounded } from '@mui/icons-material'
@@ -24,7 +24,7 @@ type Props = {
 }
 
 const AddFineDialog = ({ finesList }: Props) => {
-  const { updatePlayerStatus } = useAppCtx()
+  const { updatePlayerStatus } = usePlayerCtx()
   const router = useRouter()
   const params = useSearchParams()
   const [radioGroupValue, setRadioGroupValue] = useState<string | null>(null)

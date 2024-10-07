@@ -5,7 +5,7 @@ import {
   KeyboardArrowUpRounded,
 } from '@mui/icons-material'
 import { type PlayerInfo } from '@/types/player'
-import { useAppCtx } from '@/app/context/AppContext'
+import { usePlayerCtx } from '@/app/context/PlayerContext'
 import { cn } from '@/lib/utils/helpers'
 import Link from 'next/link'
 import { useUserCtx } from '@/app/context/UserContext'
@@ -17,7 +17,7 @@ type Props = {
 }
 
 const PlayerInfoRow = ({ info, ...props }: Props) => {
-  const { playerStatus } = useAppCtx()
+  const { playerStatus } = usePlayerCtx()
   const { role } = useUserCtx()
 
   const stillToPaySpan = (

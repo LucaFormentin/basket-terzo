@@ -2,7 +2,7 @@ import { type PlayerInfo } from '@/types/player'
 import { useEffect, useState } from 'react'
 import PlayerInfoRow from './PlayerInfoRow'
 import PlayerHistoryRow from './PlayerHistoryRow'
-import { useAppCtx } from '@/app/context/AppContext'
+import { usePlayerCtx } from '@/app/context/PlayerContext'
 import { api } from '@/lib/api-client'
 import { FineDbListSchema } from '@/types/fine'
 
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const PlayerRow = (props: Props) => {
-  const { playerStatus, updatePlayerStatus } = useAppCtx()
+  const { playerStatus, updatePlayerStatus } = usePlayerCtx()
   const [pInfo, setPInfo] = useState<PlayerInfo>(props.playerInfo)
   const [openHistory, setOpenHistory] = useState(false)
 
