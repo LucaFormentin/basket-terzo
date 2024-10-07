@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from '@tanstack/react-form'
 import { api } from '@/lib/api-client'
 import * as motion from 'framer-motion/client'
+import toast from 'react-hot-toast'
 
 type Props = {
   onLoginExit: () => void
@@ -22,6 +23,7 @@ const LoginPanel = (props: Props) => {
     onSubmit: async (formData) => {
       setRole('ADMIN')
       router.push('/lista-multe')
+      toast.success('Loggato come Admin!')
     },
     validators: {
       onSubmitAsync: async ({ value }) => {

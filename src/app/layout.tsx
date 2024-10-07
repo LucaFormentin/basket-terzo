@@ -9,6 +9,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { UserContextProvider } from './context/UserContext'
 import { PlayerContextProvider } from './context/PlayerContext'
+import {Toaster} from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,6 +30,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
               <PlayerContextProvider>
                 <UserContextProvider>{props.children}</UserContextProvider>
               </PlayerContextProvider>
+              <Toaster />
             </ThemeProvider>
           </AppRouterCacheProvider>
         </AppProvider>

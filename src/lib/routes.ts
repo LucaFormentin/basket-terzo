@@ -1,4 +1,4 @@
-import { GavelRounded, HomeRounded } from '@mui/icons-material'
+import { GavelRounded, HomeRounded, SettingsRounded } from '@mui/icons-material'
 import path from 'path'
 
 export const ROUTES: {
@@ -15,7 +15,12 @@ export const ROUTES: {
     href: '/lista-multe',
     label: 'Multe',
     icon: GavelRounded,
-  }
+  },
+  {
+    href: '/impostazioni',
+    label: 'Impostazioni',
+    icon: SettingsRounded,
+  },
 ]
 
 export const playersListFilePath = path.join(

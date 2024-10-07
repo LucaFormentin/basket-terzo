@@ -7,6 +7,7 @@ import { Button } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
 import * as motion from 'framer-motion/client'
+import toast from 'react-hot-toast'
 
 type Props = {
   onAdminClick: () => void
@@ -36,7 +37,10 @@ const DefaultPanel = (props: Props) => {
         href='/lista-multe'
         endIcon={<AccessibilityRounded />}
         className='bg-blue-800 p-4 rounded-3xl w-3/4'
-        onClick={() => setRole('GUEST')}
+        onClick={() => {
+          setRole('GUEST')
+          toast.success('Loggato come Ospite!')
+        }}
       >
         <span className='capitalize text-base font-normal'>Ospite</span>
       </Button>
