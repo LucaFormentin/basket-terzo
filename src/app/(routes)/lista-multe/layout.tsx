@@ -1,19 +1,19 @@
 'use client'
 
-import { type ReactNode } from 'react'
+import React from 'react'
 
 const ListaMulteLayout = ({
   children,
   modals,
 }: {
-  children: ReactNode
-  modals: ReactNode
+  children: React.ReactNode
+  modals: React.ReactNode
 }) => {
   return (
-    <section className='overflow-y-auto pb-20'>
+    <>
       {children}
       {modals}
-    </section>
+    </>
   )
 }
 

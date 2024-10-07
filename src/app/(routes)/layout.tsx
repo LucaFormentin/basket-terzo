@@ -1,12 +1,13 @@
 'use client'
 
+import AnimatedWrapper from '@/components/AnimatedWrapper'
 import Footer from '@/components/Navigation/Footer'
 import React from 'react'
 
 const RoutesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      {children}
+      <AnimatedWrapper>{children}</AnimatedWrapper>
       <Footer />
     </>
   )

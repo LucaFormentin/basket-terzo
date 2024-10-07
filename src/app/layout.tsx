@@ -9,7 +9,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { UserContextProvider } from './context/UserContext'
 import { PlayerContextProvider } from './context/PlayerContext'
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -112,7 +112,7 @@ const LoginPanel = (props: Props) => {
         />
       </form>
       <p className='text-sm underline' onClick={props.onLoginExit}>
-        Back to home
+        Torna alla home
       </p>
     </motion.fieldset>
   )
