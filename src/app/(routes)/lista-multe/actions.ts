@@ -1,9 +1,8 @@
 import { File } from '@/lib/classes/FileHandler'
-import { getFirebaseEntries, pushDataToFirebase } from '@/lib/firebase/services'
+import { PlayersCollection } from '@/lib/classes/PlayerDB'
 import { finesListFilePath, playersListFilePath } from '@/lib/routes'
-import { generateRandomStr } from '@/lib/utils/helpers'
 import { type BaseFine } from '@/types/fine'
-import type { PlayerInfo, BasePlayer, FirebasePlayer } from '@/types/player'
+import type { PlayerInfo, BasePlayer } from '@/types/player'
 
 const getPlayers = async (): Promise<BasePlayer[] | null> => {
   const playersListFile = new File(playersListFilePath)
@@ -19,31 +18,20 @@ export const getFines = async (): Promise<BaseFine[] | null> => {
   return fines
 }
 
-const createPlayer = (playerName: string): FirebasePlayer => ({
-  _id: generateRandomStr(16),
-  player: playerName,
-  finesList: [],
-})
-
-const initPlayersInFirebase = (players: BasePlayer[]) => {
-  players.forEach(async (player) => {
-    let newPlayer = createPlayer(`${player.lastName}_${player.number}`)
-    await pushDataToFirebase(newPlayer)
-  })
-}
-
 export const getPlayersInfo = async (): Promise<PlayerInfo[] | null> => {
   const players = await getPlayers()
 
   if (!players) return null
 
-  let fbEntries = (await getFirebaseEntries()) as FirebasePlayer[]
+  const playersCollection = new PlayersCollection()
+
+  let fbEntries = await playersCollection.getEntries()
 
   if (!fbEntries || fbEntries.length === 0) {
-    initPlayersInFirebase(players)
+    playersCollection.initPlayers(players)
   }
 
-  fbEntries = (await getFirebaseEntries()) as FirebasePlayer[]
+  fbEntries = await playersCollection.getEntries()
 
   return players.map((player) => {
     let playerIdentifier = `${player.lastName}_${player.number}`

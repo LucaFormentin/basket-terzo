@@ -60,13 +60,13 @@ const Settings = () => {
     <section className='w-full h-full flex flex-col gap-4'>
       <MenuItem
         href='/impostazioni/modifica-multe'
-        label='Modifica Multe'
+        label='Gestisci Multe'
         icon={GavelRounded}
         color='bg-yellow-600'
       />
       <MenuItem
         href='/impostazioni/modifica-giocatori'
-        label='Modifica Giocatori'
+        label='Gestisci Giocatori'
         icon={GroupRounded}
       />
     </section>

@@ -31,7 +31,7 @@ const Footer = () => {
         disabled={pathname === route.href}
         showLabel
         className={cn(
-          'rounded-full hover:bg-blue-800/40',
+          'rounded-3xl hover:bg-blue-800/40',
           isCurrentRoute && 'bg-blue-800'
         )}
       />

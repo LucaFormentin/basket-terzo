@@ -12,6 +12,13 @@ export type FineDb = BaseFine & {
   _id: string
 }
 
+export type FirebaseFine = {
+  key?: string
+  _id: string
+  name: string
+  penitence: string
+}
+
 const FineDbSchema = z.object({
   _id: z.string(),
   fineId: z.string(),

@@ -1,0 +1,23 @@
+.panel-container {
+  @apply bg-blue-950 rounded-3xl p-4 flex flex-col items-center justify-center gap-4;
+}
+
+form {
+  @apply flex flex-col items-center gap-4;
+}
+
+input {
+  @apply rounded-3xl border-2 border-blue-800 bg-blue-800/30 p-4;
+}
+
+#submit-btn {
+  @apply bg-blue-800 text-white p-4 rounded-3xl w-full;
+}
+
+.fines-list {
+  @apply flex flex-col gap-4;
+}
+
+.fines-list > li {
+  @apply bg-blue-950 p-1 px-4 rounded-3xl;
+}

@@ -1,5 +1,5 @@
 import { File } from '@/lib/classes/FileHandler'
-import { updateFinesList } from '@/lib/firebase/services'
+import { PlayersCollection } from '@/lib/classes/PlayerDB'
 import { finesListFilePath } from '@/lib/routes'
 import { generateRandomStr } from '@/lib/utils/helpers'
 import type { BaseFine, FineDb } from '@/types/fine'
@@ -14,14 +14,19 @@ const createNewFine = async (fineId: string): Promise<FineDb> => {
   if (!fine) throw new Error('Multa non trovata')
 
   let date = moment(new Date().toISOString()).format('YYYY-MM-DD')
-  let newFine: FineDb = { ...fine, date, paid: false, _id: generateRandomStr(16) }
+  let newFine: FineDb = {
+    ...fine,
+    date,
+    paid: false,
+    _id: generateRandomStr(16),
+  }
 
   return newFine
 }
 
 /**
  * Handles the GET request for adding a fine to a player.
- * 
+ *
  * @param request - The request object.
  * @param params - The parameters object containing the player name.
  * @param params.player - The name of the player.
@@ -36,7 +41,9 @@ export async function GET(
   const fineId = searchParams.get('fineId') as string
 
   const newFineToInsert = await createNewFine(fineId)
-  await updateFinesList(playerFirebaseKey, newFineToInsert)
+
+  const playersCollection = new PlayersCollection()
+  await playersCollection.updateFinesList(playerFirebaseKey, newFineToInsert)
 
   return Response.json({ data: 'Nuova multa aggiunta!' })
 }

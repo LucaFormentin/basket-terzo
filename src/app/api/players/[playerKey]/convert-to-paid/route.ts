@@ -1,4 +1,4 @@
-import { convertToPaid } from "@/lib/firebase/services";
+import { PlayersCollection } from '@/lib/classes/PlayerDB'
 
 export async function GET(
   request: Request,
@@ -8,7 +8,8 @@ export async function GET(
   const { searchParams } = new URL(request.url)
   const fineObjId = searchParams.get('fineObjId') as string
 
-  await convertToPaid(playerFirebaseKey, fineObjId)
+  const playersCollection = new PlayersCollection()
+  await playersCollection.convertToPaid(playerFirebaseKey, fineObjId)
 
   return Response.json({ data: 'Multa pagata' })
 }
