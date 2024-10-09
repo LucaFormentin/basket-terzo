@@ -1,22 +1,16 @@
 import { z } from "zod"
 
-export type BaseFine = {
+export type FirebaseFine = {
+  key?: string
   fineId: string
   name: string
   penitence: string
 }
 
-export type FineDb = BaseFine & {
+export type PlayerFine = FirebaseFine & {
   date: string
   paid: boolean
   _id: string
-}
-
-export type FirebaseFine = {
-  key?: string
-  _id: string
-  name: string
-  penitence: string
 }
 
 const FineDbSchema = z.object({

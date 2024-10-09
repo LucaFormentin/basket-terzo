@@ -1,4 +1,4 @@
-import { type FineDb } from "./fine"
+import { type PlayerFine } from "./fine"
 
 export type BasePlayer = {
   number: string
@@ -10,7 +10,7 @@ export type FirebasePlayer = {
   key?: string
   _id: string
   player: string
-  finesList: FineDb[]
+  finesList: PlayerFine[]
 }
 
 export type PlayerInfo = BasePlayer & {

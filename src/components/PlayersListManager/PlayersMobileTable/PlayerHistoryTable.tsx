@@ -1,11 +1,11 @@
 import { useUserCtx } from '@/app/context/UserContext'
-import { type FineDb } from '@/types/fine'
+import { type PlayerFine } from '@/types/fine'
 import { DoneRounded } from '@mui/icons-material'
 import { Chip } from '@mui/material'
 import React from 'react'
 
 type Props = {
-  finesList: FineDb[]
+  finesList: PlayerFine[]
   onConvertToPaidFine: (fineObjId: string) => void
 }
 

@@ -2,7 +2,7 @@
 
 import { usePlayerCtx } from '@/app/context/PlayerContext'
 import { api } from '@/lib/api-client'
-import { type BaseFine } from '@/types/fine'
+import { type FirebaseFine } from '@/types/fine'
 import { CloseRounded } from '@mui/icons-material'
 import {
   Button,
@@ -20,7 +20,7 @@ import { type ChangeEvent, useState } from 'react'
 import './dialog.css'
 
 type Props = {
-  finesList: BaseFine[]
+  finesList: FirebaseFine[]
 }
 
 const AddFineDialog = ({ finesList }: Props) => {

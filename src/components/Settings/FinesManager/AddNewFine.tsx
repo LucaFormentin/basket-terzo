@@ -21,6 +21,7 @@ const AddNewFine = (props: Props) => {
         api.post('/fines/create', formData.value).finally(() => {
           toast.success('Multa creata!')
           setIsFormOpen(false)
+          form.reset()
 
           // revalidate fines list query
           props.onFineCreated()

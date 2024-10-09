@@ -19,5 +19,5 @@ input {
 }
 
 .fines-list > li {
-  @apply bg-blue-950 p-1 px-4 rounded-3xl;
+  @apply bg-blue-950 p-1 px-4 rounded-3xl border-2 border-blue-800;
 }

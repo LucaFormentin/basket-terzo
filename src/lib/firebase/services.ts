@@ -1,7 +1,7 @@
 import { child, get, push, ref, set, update } from 'firebase/database'
 import { database } from './config'
 import type { FirebasePlayer } from '@/types/player'
-import { FineDb } from '@/types/fine'
+import { PlayerFine } from '@/types/fine'
 
 export const getFirebaseEntries = async (): Promise<FirebasePlayer[]> => {
   const dbRef = ref(database, process.env.FIREBASE_DB_COLLECTION)
@@ -23,7 +23,7 @@ export const pushDataToFirebase = async (data: any) => {
   await set(newDataRef, data)
 }
 
-export const updateFinesList = async (playerKey: string, newFine: FineDb) => {
+export const updateFinesList = async (playerKey: string, newFine: PlayerFine) => {
   const playerRef = ref(
     database,
     `${process.env.FIREBASE_DB_COLLECTION}/${playerKey}`

@@ -1,6 +1,6 @@
 import { usePlayerCtx } from "@/app/context/PlayerContext"
 import { api } from "@/lib/api-client"
-import { type FineDb } from "@/types/fine"
+import { type PlayerFine } from "@/types/fine"
 import { Collapse } from "@mui/material"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import PlayerHistoryTable from "./PlayerHistoryTable"
@@ -14,7 +14,7 @@ const PlayerHistoryRow = (props: Props) => {
   const queryClient = useQueryClient()
   const { updatePlayerStatus } = usePlayerCtx()
 
-  const { status, data, error } = useQuery<{ data: FineDb[] }>({
+  const { status, data, error } = useQuery<{ data: PlayerFine[] }>({
     queryKey: ['finesList', props.playerFirebaseKey],
     queryFn: () => api.get(`/players/${props.playerFirebaseKey}/get-history`),
     enabled: !!props.playerFirebaseKey && props.openHistory,
@@ -47,7 +47,7 @@ const PlayerHistoryRow = (props: Props) => {
     }
   }
 
-  const renderTable = (finesList: FineDb[] | [] = []) => {
+  const renderTable = (finesList: PlayerFine[] | [] = []) => {
     // render table only when data is fetched successfully or list is not empty
     if (status !== 'success' || finesList.length === 0) return
 

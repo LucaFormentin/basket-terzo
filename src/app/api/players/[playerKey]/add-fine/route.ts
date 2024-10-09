@@ -1,21 +1,22 @@
-import { File } from '@/lib/classes/FileHandler'
+import { FinesCollection } from '@/lib/classes/FineDB'
 import { PlayersCollection } from '@/lib/classes/PlayerDB'
-import { finesListFilePath } from '@/lib/routes'
 import { generateRandomStr } from '@/lib/utils/helpers'
-import type { BaseFine, FineDb } from '@/types/fine'
+import type { PlayerFine } from '@/types/fine'
 import moment from 'moment'
 
-const createNewFine = async (fineId: string): Promise<FineDb> => {
-  const finesFile = new File(finesListFilePath)
-  const finesData = (await finesFile.read()) as BaseFine[]
+const createNewFine = async (fineId: string): Promise<PlayerFine> => {
+  const finesCollection = new FinesCollection()
+  const finesData = await finesCollection.getEntries()
 
   const fine = finesData.find((fine) => fine.fineId === fineId)
 
   if (!fine) throw new Error('Multa non trovata')
 
+  const { key, ...fineData } = fine
   let date = moment(new Date().toISOString()).format('YYYY-MM-DD')
-  let newFine: FineDb = {
-    ...fine,
+
+  let newFine: PlayerFine = {
+    ...fineData,
     date,
     paid: false,
     _id: generateRandomStr(16),

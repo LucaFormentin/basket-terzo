@@ -1,7 +1,7 @@
 import { type DatabaseReference, get, push, ref, set, update } from 'firebase/database'
 import { database } from '../firebase/config'
 import { type BasePlayer, type FirebasePlayer } from '@/types/player'
-import { type FineDb } from '@/types/fine'
+import { type PlayerFine } from '@/types/fine'
 import { generateRandomStr } from '../utils/helpers'
 
 export class PlayersCollection {
@@ -50,7 +50,7 @@ export class PlayersCollection {
     await set(dataToPushRef, data)
   }
 
-  updateFinesList = async (playerKey: string, newFine: FineDb) => {
+  updateFinesList = async (playerKey: string, newFine: PlayerFine) => {
     const playerRef = this.initPlayerRef(playerKey)
     const playerData = await this.getSnapshot(playerRef) as FirebasePlayer
 

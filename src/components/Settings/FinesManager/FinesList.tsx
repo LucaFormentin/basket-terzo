@@ -9,11 +9,11 @@ type Props = {
 
 const FinesList = ({ fines, ...props }: Props) => {
   return (
-    <div className='flex flex-col gap-10 mt-10'>
+    <div className='flex flex-col gap-5 mt-5'>
       <AddNewFine onFineCreated={props.onAddNewFine} />
       <ul className='fines-list'>
         {fines.map((fine) => (
-          <li key={fine._id}>
+          <li key={fine.fineId}>
             <p>{fine.name}</p>
             <p>{fine.penitence}</p>
           </li>

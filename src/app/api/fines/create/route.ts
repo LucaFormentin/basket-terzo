@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   }
 
   const fineToPush = {
-    _id: generateRandomStr(16),
+    fineId: generateRandomStr(16),
     ...data,
   }
 
