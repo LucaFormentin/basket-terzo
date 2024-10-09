@@ -1,7 +1,7 @@
 import { File } from '@/lib/classes/FileHandler'
 import { FinesCollection } from '@/lib/classes/FineDB'
 import { PlayersCollection } from '@/lib/classes/PlayerDB'
-import { finesListFilePath, playersListFilePath } from '@/lib/routes'
+import { playersListFilePath } from '@/lib/routes'
 import { type FirebaseFine } from '@/types/fine'
 import type { PlayerInfo, BasePlayer } from '@/types/player'
 
@@ -12,6 +12,11 @@ const getPlayers = async (): Promise<BasePlayer[] | null> => {
   return players
 }
 
+/**
+ * Retrieves a list of fines from the FinesCollection in FirebaseDB.
+ *
+ * @returns {Promise<FirebaseFine[]>} A promise that resolves to an array of FirebaseFine objects.
+ */
 export const getFines = async (): Promise<FirebaseFine[]> => {
   const finesCollection = new FinesCollection()
   const fines = await finesCollection.getEntries()
@@ -19,6 +24,24 @@ export const getFines = async (): Promise<FirebaseFine[]> => {
   return fines
 }
 
+/**
+ * Retrieves player information including fines data from the database.
+ *
+ * @returns {Promise<PlayerInfo[] | null>} A promise that resolves to an array of player information objects or null if no players are found.
+ *
+ * The function performs the following steps:
+ * 1. Fetches the list of players using the `getPlayers` function.
+ * 2. If no players are found, returns null.
+ * 3. Initializes a new `PlayersCollection` instance.
+ * 4. Retrieves entries from the `PlayersCollection`.
+ * 5. If no entries are found, initializes the players in the collection.
+ * 7. Maps the players to include fines data from the database.
+ *
+ * Each player object in the returned array includes also:
+ * - `totalFines`: The total number of fines the player has.
+ * - `stillToPay`: The number of fines that are still unpaid.
+ * - `firebaseKey`: The key of the player entry in the database, or null if not found.
+ */
 export const getPlayersInfo = async (): Promise<PlayerInfo[] | null> => {
   const players = await getPlayers()
 
