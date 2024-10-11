@@ -1,0 +1,179 @@
+{
+  "fines": {
+    "-O8gY2mH1Co3c5XCWrTg": {
+      "fineId": "jdlhs4j684e8qz2b",
+      "name": "Ritardo allenamento",
+      "penitence": "3€"
+    },
+    "-O8gYMABA8DE_OmF9qNF": {
+      "fineId": "62bpb6nqngaploh6",
+      "name": "0/2 ai liberi",
+      "penitence": "3€"
+    },
+    "-O8gYO9H_1zT_kXlmrW9": {
+      "fineId": "rovzaj749chw9tdg",
+      "name": "Fallo tecnico",
+      "penitence": "5€"
+    },
+    "-O8gYQBuK2k4p2zmdAx8": {
+      "fineId": "rqzvy4d31dloh8y8",
+      "name": "Fallo antisportivo",
+      "penitence": "5€"
+    },
+    "-O8gYRsiCpWhGmQwvm9H": {
+      "fineId": "qxu93yu3vwqlscy8",
+      "name": "Espulsione",
+      "penitence": "10€"
+    },
+    "-O8gYU4mnzA_r3ovPObh": {
+      "fineId": "zx35qtdtj8ivj0an",
+      "name": "Dimenticato scarpe",
+      "penitence": "3€"
+    },
+    "-O8gYVwlZRhOiLIaNSIR": {
+      "fineId": "npmrsfpsl8swmhc6",
+      "name": "Dimenticato seconda maglia",
+      "penitence": "3€"
+    },
+    "-O8gYZBq8aznixVoKkwf": {
+      "fineId": "ygbxeur8jekj7k5c",
+      "name": "Dimenticato documento",
+      "penitence": "5€"
+    },
+    "-O8gYaT6S2iD_cxTbSr7": {
+      "fineId": "s633azyki8ka98lh",
+      "name": "Multe non saldate",
+      "penitence": "5€"
+    }
+  },
+  "players": {
+    "-O7hPdrm19gd0qSBivJM": {
+      "_id": "uk9a1fw8s16rhuq7",
+      "player": "Cappello_03"
+    },
+    "-O7hPdrpQev02yEnHvuo": {
+      "_id": "w5r9skcalxb10t8d",
+      "player": "Formentin_04"
+    },
+    "-O7hPdrqQ0eHLdwdED1K": {
+      "_id": "dz5s94wmohckku9f",
+      "player": "Velicogna_05"
+    },
+    "-O7hPdrrnOnWeJwTzCYY": {
+      "_id": "m6w8wmau4s15c7d4",
+      "player": "Scrosoppi_06"
+    },
+    "-O7hPdrrnOnWeJwTzCYZ": {
+      "_id": "sk4sqga6ddytlrus",
+      "player": "Morsut_07"
+    },
+    "-O7hPdrsevgVxPj238CA": {
+      "_id": "jvd43mpgpdxpc0qb",
+      "player": "Mazza_09"
+    },
+    "-O7hPdrsevgVxPj238CB": {
+      "_id": "mcen5ya6pcpfpg96",
+      "player": "Scrosoppi_10"
+    },
+    "-O7hPdrts61eozA7qlJM": {
+      "_id": "mfd99gidz1lvz8tn",
+      "player": "Ena_11"
+    },
+    "-O7hPdrts61eozA7qlJN": {
+      "_id": "wrvjjw6lg19e1bjd",
+      "player": "Gobbo_13"
+    },
+    "-O7hPdruplIvFhXVJINS": {
+      "_id": "omb092908gtnarzb",
+      "player": "Buzzin_14"
+    },
+    "-O7hPdruplIvFhXVJINT": {
+      "_id": "ilksmnpm6p88qov3",
+      "player": "Gigante_15"
+    },
+    "-O7hPdruplIvFhXVJINU": {
+      "_id": "irfme528r37a0jp8",
+      "player": "Allegrini_16"
+    },
+    "-O7hPdrv0FAKHi8WAu0W": {
+      "_id": "wuyb1wgx2u7i36yp",
+      "player": "Magron_20"
+    },
+    "-O7hPdrv0FAKHi8WAu0X": {
+      "_id": "gd1k0ggb5hs2i5sf",
+      "player": "Sardella_21"
+    },
+    "-O7hPdrv0FAKHi8WAu0Y": {
+      "_id": "y4fac7rqm2s6kw1a",
+      "player": "Bramuzzo_22"
+    },
+    "-O7hPdrv0FAKHi8WAu0Z": {
+      "_id": "avktbxwyhz2t0vw0",
+      "player": "Stefanovich_23"
+    },
+    "-O7hPdrxqdAYmRNeauWE": {
+      "_id": "gy7ds08m12zbmnzy",
+      "player": "Cappello_03"
+    },
+    "-O7hPdrxqdAYmRNeauWF": {
+      "_id": "q4fhngh2a6ehmauf",
+      "player": "Formentin_04"
+    },
+    "-O7hPdryibJAc-e22OEZ": {
+      "_id": "ttb0kuqa0qzx5rip",
+      "player": "Velicogna_05"
+    },
+    "-O7hPdryibJAc-e22OE_": {
+      "_id": "nmwnv5w3ftl8y6kb",
+      "player": "Scrosoppi_06"
+    },
+    "-O7hPdryibJAc-e22OEa": {
+      "_id": "xntksz0tj2jsl6z8",
+      "player": "Morsut_07"
+    },
+    "-O7hPdryibJAc-e22OEb": {
+      "_id": "38293qak8e0077uh",
+      "player": "Mazza_09"
+    },
+    "-O7hPdryibJAc-e22OEc": {
+      "_id": "85iev3mv6f8hftly",
+      "player": "Scrosoppi_10"
+    },
+    "-O7hPdryibJAc-e22OEd": {
+      "_id": "9m8hr8p1bfdg8lyt",
+      "player": "Ena_11"
+    },
+    "-O7hPdrz725fMPIAkkGy": {
+      "_id": "fbyrejqq3sasdnwc",
+      "player": "Gobbo_13"
+    },
+    "-O7hPdrz725fMPIAkkGz": {
+      "_id": "m87pw726be2bxucc",
+      "player": "Buzzin_14"
+    },
+    "-O7hPdrz725fMPIAkkH-": {
+      "_id": "1ifm0z7ualrcgxv3",
+      "player": "Gigante_15"
+    },
+    "-O7hPdrz725fMPIAkkH0": {
+      "_id": "nhy9ei0hq9m108sx",
+      "player": "Allegrini_16"
+    },
+    "-O7hPdrz725fMPIAkkH1": {
+      "_id": "zhazel56o9lomq4u",
+      "player": "Magron_20"
+    },
+    "-O7hPds-l8MJJH__3w_W": {
+      "_id": "3b7kt8ihxb83f1ee",
+      "player": "Sardella_21"
+    },
+    "-O7hPds-l8MJJH__3w_X": {
+      "_id": "xp39ztxdxpadafn8",
+      "player": "Bramuzzo_22"
+    },
+    "-O7hPds-l8MJJH__3w_Y": {
+      "_id": "el6tl1wtji1xytno",
+      "player": "Stefanovich_23"
+    }
+  }
+}

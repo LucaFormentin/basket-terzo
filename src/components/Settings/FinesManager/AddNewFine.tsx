@@ -1,4 +1,5 @@
 import { api } from '@/lib/api-client'
+import { cn } from '@/lib/utils/helpers'
 import { Collapse } from '@mui/material'
 import { useForm } from '@tanstack/react-form'
 import React, { useState } from 'react'
@@ -40,6 +41,7 @@ const AddNewFine = (props: Props) => {
       >
         Aggiungi multa
       </button>
+
       <Collapse in={isFormOpen} timeout='auto' unmountOnExit>
         <div className='panel-container'>
           <span>Inserisci i dati della multa</span>

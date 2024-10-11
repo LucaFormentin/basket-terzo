@@ -38,7 +38,13 @@ const FinesManager = () => {
   const renderFinesList = (finesList: FirebaseFine[] | [] = []) => {
     if (status !== 'success' || finesList.length === 0) return
 
-    return <FinesList fines={finesList} onAddNewFine={revalidateQuery} />
+    return (
+      <FinesList
+        fines={finesList}
+        onAddNewFine={revalidateQuery}
+        onFineDeleted={revalidateQuery}
+      />
+    )
   }
 
   return (

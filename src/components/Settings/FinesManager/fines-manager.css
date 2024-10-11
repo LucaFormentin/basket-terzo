@@ -18,6 +18,14 @@ input {
   @apply flex flex-col gap-4;
 }
 
-.fines-list > li {
-  @apply bg-blue-950 p-1 px-4 rounded-3xl border-2 border-blue-800;
+.fines-list-element {
+  @apply flex items-center bg-blue-950 px-4 rounded-3xl border-2 border-blue-800;
+}
+
+.more-menu {
+  @apply h-full flex items-center mx-2 border;
+}
+
+.delete-fine-btn {
+  @apply bg-red-800 border rounded-3xl h-12 flex items-center justify-center;
 }

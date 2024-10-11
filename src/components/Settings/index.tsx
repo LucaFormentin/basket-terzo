@@ -16,6 +16,7 @@ type MenuItemProps = {
   label: string
   icon: React.ElementType
   color?: string
+  disabled?: boolean
 }
 
 const MenuItem = (props: MenuItemProps) => {
@@ -35,6 +36,7 @@ const MenuItem = (props: MenuItemProps) => {
         transition: { duration: 0.5 },
         onAnimationComplete: () => setIsAnimationStarted(false),
       })}
+      className={cn(props.disabled && 'pointer-events-none opacity-50')}
     >
       <Link
         className='border-2 border-blue-800 rounded-lg p-4 flex items-center'
@@ -68,6 +70,7 @@ const Settings = () => {
         href='/impostazioni/modifica-giocatori'
         label='Gestisci Giocatori'
         icon={GroupRounded}
+        disabled
       />
     </section>
   )

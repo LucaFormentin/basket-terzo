@@ -1,4 +1,4 @@
-import { get, push, ref, set, type DatabaseReference } from 'firebase/database'
+import { get, push, ref, remove, set, type DatabaseReference } from 'firebase/database'
 import { database } from '../firebase/config'
 import { type FirebaseFine } from '@/types/fine'
 
@@ -29,5 +29,21 @@ export class FinesCollection {
   pushData = async (data: any) => {
     let dataToPushRef = push(this.dbRef)
     await set(dataToPushRef, data)
+  }
+
+  deleteData = async (fineId: string) => {
+    let fines = await this.getSnapshot(this.dbRef)
+
+    let fineKey = Object.keys(fines).find((key) => {
+      let currentFine: FirebaseFine = fines[key]
+      return currentFine.fineId === fineId
+    })
+
+    if (fineKey) {
+      let fineRef = ref(database, `${this.playersCollection}/${fineKey}`)
+      await remove(fineRef)
+    } else {
+      console.log('Multa non trovata!')
+    }
   }
 }

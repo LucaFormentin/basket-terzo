@@ -1,9 +1,6 @@
 import { FinesCollection } from '@/lib/classes/FineDB'
 
-export async function GET(
-  request: Request,
-  { params }: { params: { playerKey: string } }
-) {
+export async function GET(request: Request) {
   const finesCollection = new FinesCollection()
   const fines = await finesCollection.getEntries()
 
