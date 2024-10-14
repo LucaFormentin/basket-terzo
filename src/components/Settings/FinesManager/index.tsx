@@ -8,11 +8,16 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import NoFinesFound from './NoFinesFound'
 import FinesList from './FinesList'
 
-const FinesManager = () => {
+type Props = {
+  initialFines: FirebaseFine[] // initial data from server
+}
+
+const FinesManager = ({ initialFines }: Props) => {
   const queryClient = useQueryClient()
   const { status, data, error } = useQuery<{ finesList: FirebaseFine[] }>({
     queryKey: ['fines'],
     queryFn: () => api.get('/fines/get-all'),
+    initialData: { finesList: initialFines },
   })
 
   const revalidateQuery = () => {
@@ -22,9 +27,8 @@ const FinesManager = () => {
   }
 
   const renderStatusFeedback = () => {
+    // no pending status because initial data is provided
     switch (status) {
-      case 'pending':
-        return <span>Caricamento...</span>
       case 'error':
         return <span>Errore: {error.message}</span>
       case 'success':
