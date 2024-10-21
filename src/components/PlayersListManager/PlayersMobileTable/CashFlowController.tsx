@@ -1,5 +1,4 @@
 import { type CashFlowT } from '@/app/api/players/get-cash-flow/route'
-import { usePlayerCtx } from '@/app/context/PlayerContext'
 import { api } from '@/lib/api-client'
 import { Collapse } from '@mui/material'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
@@ -8,7 +7,6 @@ import { useEffect, useState } from 'react'
 
 const CashFlowController = () => {
   const [isCollOpen, setIsCollOpen] = useState(false)
-  const { playerStatus } = usePlayerCtx()
 
   const queryClient = useQueryClient()
   const { status, data, error } = useQuery<{ data: CashFlowT }>({
@@ -17,12 +15,12 @@ const CashFlowController = () => {
   })
 
   useEffect(() => {
-    if (isCollOpen || !playerStatus.isUpdated) {
+    if (isCollOpen) {
       queryClient.invalidateQueries({
         queryKey: ['cashFlow'],
       })
     }
-  }, [playerStatus, isCollOpen])
+  }, [isCollOpen])
 
   const renderQueryRes = () => {
     switch (status) {
