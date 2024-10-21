@@ -3,7 +3,7 @@
 }
 
 .players-list {
-  @apply flex flex-col gap-3;
+  @apply flex flex-col gap-3 mb-24;
 }
 
 .player-row {
