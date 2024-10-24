@@ -1,4 +1,4 @@
-import { getCashFlow } from '@/app/(routes)/lista-multe/actions'
+import { getCashFlow } from "@/app/(routes)/impostazioni/actions";
 
 export async function GET(request: Request) {
   const cashFlow = await getCashFlow()

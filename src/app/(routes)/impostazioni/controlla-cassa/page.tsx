@@ -1,6 +1,6 @@
 import CashFlowController from '@/components/Settings/CashFlowController'
-import { getCashFlow } from '../../lista-multe/actions'
 import { Container } from '@mui/material'
+import { getCashFlow } from '../actions'
 
 const ControllaCassaPage = async () => {
   const cashFlow = await getCashFlow()
