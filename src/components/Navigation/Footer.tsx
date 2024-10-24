@@ -1,4 +1,3 @@
-import { useUserCtx } from '@/app/context/UserContext'
 import { ROUTES } from '@/lib/routes'
 import { cn } from '@/lib/utils/helpers'
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
@@ -8,11 +7,8 @@ import React from 'react'
 
 const Footer = () => {
   const pathname = usePathname()
-  const { role } = useUserCtx()
 
   const routesNavActions = ROUTES.map((route, index) => {
-    if (role === 'GUEST' && route.href === '/impostazioni') return
-
     /**
      * Checks if the current pathname matches the given route's href
      * or if the route's href is not the root ('/') and the pathname starts with the route's href.

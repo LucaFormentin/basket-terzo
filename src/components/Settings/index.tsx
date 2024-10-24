@@ -5,11 +5,13 @@ import {
   GavelRounded,
   GroupRounded,
   KeyboardArrowRightRounded,
+  PaidRounded,
 } from '@mui/icons-material'
 import React, { useEffect } from 'react'
 import * as motion from 'framer-motion/client'
 import Link from 'next/link'
 import { cn } from '@/lib/utils/helpers'
+import { useUserCtx } from '@/app/context/UserContext'
 
 type MenuItemProps = {
   href: string
@@ -57,20 +59,31 @@ const MenuItem = (props: MenuItemProps) => {
 
 const Settings = () => {
   // useMiddleware()
+  const { role } = useUserCtx()
 
   return (
     <section className='w-full h-full flex flex-col gap-4'>
+      {role === 'ADMIN' && (
+        <>
+          <MenuItem
+            href='/impostazioni/modifica-multe'
+            label='Gestisci Multe'
+            icon={GavelRounded}
+            color='bg-yellow-600'
+          />
+          <MenuItem
+            href='/impostazioni/modifica-giocatori'
+            label='Gestisci Giocatori'
+            icon={GroupRounded}
+            disabled
+          />
+        </>
+      )}
       <MenuItem
-        href='/impostazioni/modifica-multe'
-        label='Gestisci Multe'
-        icon={GavelRounded}
-        color='bg-yellow-600'
-      />
-      <MenuItem
-        href='/impostazioni/modifica-giocatori'
-        label='Gestisci Giocatori'
-        icon={GroupRounded}
-        disabled
+        href='/impostazioni/controlla-cassa'
+        label='Controlla Cassa'
+        icon={PaidRounded}
+        color='bg-green-600'
       />
     </section>
   )

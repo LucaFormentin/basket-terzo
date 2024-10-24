@@ -18,3 +18,9 @@ export type PlayerInfo = BasePlayer & {
   stillToPay: number
   firebaseKey: string | null
 }
+
+export type CashFlowT = {
+  missingCash: number
+  collectedCash: number
+  totalCash: number
+}
