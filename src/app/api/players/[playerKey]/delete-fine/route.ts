@@ -11,18 +11,19 @@ export async function GET(
 
   // update player's fines list
   const playersCollection = new PlayersCollection()
-  await playersCollection.convertToPaid(playerFirebaseKey, fineObjId)
 
-  // update cash flow
-  const cashCollection = new CashCollection()
   const updatedFine = await playersCollection.getFine(
     playerFirebaseKey,
     fineObjId
   )
-  const { penitence } = updatedFine!
+  const { penitence, paid } = updatedFine!
   const fineAmount = parseInt(penitence.split('€')[0])
 
-  await cashCollection.updateOnFinePaid(fineAmount)
+  await playersCollection.deleteFine(playerFirebaseKey, fineObjId)
 
-  return Response.json({ data: 'Multa pagata' })
+  // update cash flow
+  const cashCollection = new CashCollection()
+  await cashCollection.updateOnFineDeleted(fineAmount, paid)
+  
+  return Response.json({ data: 'Multa eliminata' })
 }

@@ -36,6 +36,23 @@ const PlayerHistoryRow = (props: Props) => {
       })
   }
 
+  const deleteFine = (fineObjId: string) => {
+    api
+      .get(`/players/${props.playerFirebaseKey}/delete-fine`, {
+        params: { fineObjId },
+      })
+      .finally(() => {
+        // invalidate query to refetch data in the history
+        queryClient.invalidateQueries({
+          queryKey: ['finesList', props.playerFirebaseKey],
+        })
+
+        // update player status to refetch data in the info row
+        updatePlayerStatus(props.playerFirebaseKey, false)
+      })
+    
+  }
+
   const renderFeedback = () => {
     switch (status) {
       case 'pending':
@@ -55,6 +72,7 @@ const PlayerHistoryRow = (props: Props) => {
       <PlayerHistoryTable
         finesList={finesList}
         onConvertToPaidFine={convertToPaidFine}
+        onDeleteFine={deleteFine}
       />
     )
   }

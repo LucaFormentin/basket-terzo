@@ -20,7 +20,7 @@ export type PlayerInfo = BasePlayer & {
 }
 
 export type CashFlowT = {
-  missingCash: number
-  collectedCash: number
-  totalCash: number
+  missing: number
+  collected: number
+  total: number
 }

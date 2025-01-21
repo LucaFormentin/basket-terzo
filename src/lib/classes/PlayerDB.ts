@@ -1,4 +1,11 @@
-import { type DatabaseReference, get, push, ref, set, update } from 'firebase/database'
+import {
+  type DatabaseReference,
+  get,
+  push,
+  ref,
+  set,
+  update,
+} from 'firebase/database'
 import { database } from '../firebase/config'
 import { type BasePlayer, type FirebasePlayer } from '@/types/player'
 import { type PlayerFine } from '@/types/fine'
@@ -52,7 +59,7 @@ export class PlayersCollection {
 
   updateFinesList = async (playerKey: string, newFine: PlayerFine) => {
     const playerRef = this.initPlayerRef(playerKey)
-    const playerData = await this.getSnapshot(playerRef) as FirebasePlayer
+    const playerData = (await this.getSnapshot(playerRef)) as FirebasePlayer
 
     let currentFinesList = playerData.finesList || []
     let updatedFinesList = [...currentFinesList, newFine]
@@ -62,14 +69,23 @@ export class PlayersCollection {
 
   getFinesListByKey = async (playerKey: string) => {
     const playerRef = this.initPlayerRef(playerKey)
-    const playerData = await this.getSnapshot(playerRef) as FirebasePlayer
+    const playerData = (await this.getSnapshot(playerRef)) as FirebasePlayer
 
     return playerData.finesList || []
   }
 
-  convertToPaid = async (playerKey: string, fineObjId: string) => {
+  getFine = async (playerKey: string, fineObjId: string): Promise<PlayerFine | undefined> => {
+    const finesList = await this.getFinesListByKey(playerKey)
+    let fineIndex = finesList.findIndex((fine) => fine._id === fineObjId)
+
+    if (fineIndex === -1) return
+
+    return finesList[fineIndex]
+  }
+
+  convertToPaid = async (playerKey: string, fineObjId: string)=> {
     const playerRef = this.initPlayerRef(playerKey)
-    const playerData = await this.getSnapshot(playerRef) as FirebasePlayer
+    const playerData = (await this.getSnapshot(playerRef)) as FirebasePlayer
 
     let finesList = playerData.finesList || []
     let fineIndex = finesList.findIndex((fine) => fine._id === fineObjId)
@@ -79,5 +95,19 @@ export class PlayersCollection {
     finesList[fineIndex].paid = true
 
     await update(playerRef, { finesList })
+  }
+
+  deleteFine = async (playerKey: string, fineObjId: string) => {
+    const playerRef = this.initPlayerRef(playerKey)
+    const playerData = (await this.getSnapshot(playerRef)) as FirebasePlayer
+
+    let finesList = playerData.finesList || []
+    let fineIndex = finesList.findIndex((fine) => fine._id === fineObjId)
+
+    if (fineIndex === -1) return
+
+    let updatedFinesList = finesList.filter((fine, index) => index !== fineIndex)
+
+    await update(playerRef, { finesList: updatedFinesList })
   }
 }

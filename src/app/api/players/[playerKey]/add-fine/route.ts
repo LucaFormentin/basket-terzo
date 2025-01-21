@@ -1,3 +1,4 @@
+import { CashCollection } from '@/lib/classes/CashDB'
 import { FinesCollection } from '@/lib/classes/FineDB'
 import { PlayersCollection } from '@/lib/classes/PlayerDB'
 import { generateRandomStr } from '@/lib/utils/helpers'
@@ -43,8 +44,14 @@ export async function GET(
 
   const newFineToInsert = await createNewFine(fineId)
 
+  // update player's fines list
   const playersCollection = new PlayersCollection()
   await playersCollection.updateFinesList(playerFirebaseKey, newFineToInsert)
+
+  // update cash flow
+  const newFineAmount = parseInt(newFineToInsert.penitence.split('€')[0])
+  const cashCollection = new CashCollection()
+  await cashCollection.updateOnNewFineAdd(newFineAmount)
 
   return Response.json({ data: 'Nuova multa aggiunta!' })
 }

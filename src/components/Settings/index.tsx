@@ -58,7 +58,7 @@ const MenuItem = (props: MenuItemProps) => {
 }
 
 const Settings = () => {
-  // useMiddleware()
+  useMiddleware()
   const { role } = useUserCtx()
 
   return (

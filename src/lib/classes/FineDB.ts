@@ -3,12 +3,12 @@ import { database } from '../firebase/config'
 import { type FirebaseFine } from '@/types/fine'
 
 export class FinesCollection {
-  private playersCollection: string
+  private finesCollection: string
   private dbRef: DatabaseReference
 
   constructor() {
-    this.playersCollection = process.env.FIREBASE_DB_COLLECTION_FINES!
-    this.dbRef = ref(database, this.playersCollection)
+    this.finesCollection = process.env.FIREBASE_DB_COLLECTION_FINES!
+    this.dbRef = ref(database, this.finesCollection)
   }
 
   private getSnapshot = async (ref: DatabaseReference) => {
@@ -40,7 +40,7 @@ export class FinesCollection {
     })
 
     if (fineKey) {
-      let fineRef = ref(database, `${this.playersCollection}/${fineKey}`)
+      let fineRef = ref(database, `${this.finesCollection}/${fineKey}`)
       await remove(fineRef)
     } else {
       console.log('Multa non trovata!')
