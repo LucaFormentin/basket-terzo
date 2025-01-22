@@ -51,9 +51,9 @@ const FineListItem = ({ fine, onDelete }: Props) => {
         onDragEnd={(_, info) => setDragDistance(info.point.x)}
         className='relative z-20 flex items-center bg-blue-950 border-2 rounded-3xl border-blue-800 px-4 p-1'
       >
-        <div>
-          <h3>{fine.name}</h3>
-          <p>{fine.penitence}</p>
+        <div className='flex w-full'>
+          <span>{fine.name}</span>
+          <span className='ml-auto'>{fine.penitence}</span>
         </div>
       </motion.div>
       <motion.div

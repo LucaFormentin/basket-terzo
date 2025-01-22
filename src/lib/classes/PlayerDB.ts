@@ -7,9 +7,8 @@ import {
   update,
 } from 'firebase/database'
 import { database } from '../firebase/config'
-import { type BasePlayer, type FirebasePlayer } from '@/types/player'
+import { type FirebasePlayer } from '@/types/player'
 import { type PlayerFine } from '@/types/fine'
-import { generateRandomStr } from '../utils/helpers'
 
 export class PlayersCollection {
   private playersCollection: string
@@ -28,19 +27,6 @@ export class PlayersCollection {
 
   private initPlayerRef = (playerKey: string) => {
     return ref(database, `${this.playersCollection}/${playerKey}`)
-  }
-
-  private createPlayer = (playerName: string): FirebasePlayer => ({
-    _id: generateRandomStr(16),
-    player: playerName,
-    finesList: [],
-  })
-
-  initPlayers = (players: BasePlayer[]) => {
-    players.forEach(async (player) => {
-      let newPlayer = this.createPlayer(`${player.lastName}_${player.number}`)
-      await this.pushData(newPlayer)
-    })
   }
 
   getEntries = async (): Promise<FirebasePlayer[]> => {

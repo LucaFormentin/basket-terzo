@@ -4,7 +4,7 @@ import PlayersList from '@/components/PlayersListManager/PlayersList'
 
 export default async function ListMultePage() {
   const playersData = await getPlayersInfo()
-
+  
   if (!playersData) return <p>Nessun giocatore trovato!</p>
 
   return (

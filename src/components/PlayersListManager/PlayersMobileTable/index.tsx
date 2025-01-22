@@ -7,9 +7,9 @@ type Props = {
 }
 
 const PlayersMobileTable = ({ playersData }: Props) => {
-  const playersRows = playersData.map((player, index) => (
-    <PlayerRow key={index} playerInfo={player} />
-  ))
+  const playersRows = playersData
+    .sort((a, b) => a.number - b.number)
+    .map((player, index) => <PlayerRow key={index} playerInfo={player} />)
 
   return <div className='players-list'>{playersRows}</div>
 }

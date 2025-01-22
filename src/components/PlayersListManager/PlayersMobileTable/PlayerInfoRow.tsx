@@ -48,7 +48,7 @@ const PlayerInfoRow = ({ info, ...props }: Props) => {
         </IconButton>
       </div>
       <div className='player-number'>
-        <img src={'/assets/jersey-circle.png'} alt={info.number} />
+        <img src={'/assets/jersey-circle.png'} alt={`${info.number}`} />
         <span>{info.number}</span>
       </div>
       <div className='player-name'>

@@ -1,19 +1,18 @@
 import { type PlayerFine } from "./fine"
 
-export type BasePlayer = {
-  number: string
+type BaseInfo = {
+  number: number
   firstName: string
   lastName: string
 }
 
-export type FirebasePlayer = {
-  key?: string
+export type FirebasePlayer = BaseInfo & {
+  key: string
   _id: string
-  player: string
   finesList: PlayerFine[]
 }
 
-export type PlayerInfo = BasePlayer & {
+export type PlayerInfo = BaseInfo & {
   totalFines: number
   stillToPay: number
   firebaseKey: string | null

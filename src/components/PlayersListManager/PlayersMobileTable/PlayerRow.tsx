@@ -26,7 +26,7 @@ const PlayerRow = (props: Props) => {
     if (!validatedRes.success)
       throw new Error('Errore nella validazione dei dati.')
 
-    let finesList = validatedRes.data
+    let finesList = validatedRes.data // updated fines list
 
     let playerInfo = {
       ...props.playerInfo,

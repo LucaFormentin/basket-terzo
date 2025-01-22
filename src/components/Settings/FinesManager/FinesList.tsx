@@ -12,12 +12,17 @@ type Props = {
 }
 
 const FinesList = ({ fines, ...props }: Props) => {
+  const sortedFines = fines.sort(
+    ({ penitence: a }, { penitence: b }) =>
+      parseInt(b.split('€')[0]) - parseInt(a.split('€')[0])
+  )
+
   return (
     <div className='flex flex-col gap-5 mt-5'>
       <AddNewFine onFineCreated={props.onAddNewFine} />
       <List>
         <TransitionGroup className='fines-list'>
-          {fines.map((fine) => (
+          {sortedFines.map((fine) => (
             <Collapse key={fine.fineId}>
               <FineListItem fine={fine} onDelete={props.onFineDeleted} />
             </Collapse>

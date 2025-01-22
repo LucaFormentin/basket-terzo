@@ -25,13 +25,14 @@ const PlayerHistoryTable = (props: Props) => {
         <Chip label='Pagata' color='success' size='small' />
       ) : role === 'ADMIN' ? (
         <div className='flex w-full'>
-          <Chip
-            label='Da pagare'
-            color='error'
+          <Chip label='Da pagare' color='error' size='small' />
+          <IconButton
             size='small'
-            onDelete={() => props.onConvertToPaidFine(fine._id)}
-            deleteIcon={<DoneRounded />}
-          />
+            className='flex ml-auto'
+            onClick={() => props.onConvertToPaidFine(fine._id)}
+          >
+            <DoneRounded />
+          </IconButton>
           <IconButton
             size='small'
             className='flex ml-auto'
@@ -46,13 +47,13 @@ const PlayerHistoryTable = (props: Props) => {
 
       return (
         <div key={fine._id} className='player-history-table-row'>
-          <div className='tr-info'>
+          <div className='tr-info w-2/3'>
             <span>{fine.date}</span>
             <span>
               {fine.name} - {fine.penitence}
             </span>
           </div>
-          <div className='paid-status-chip'>{paidStatusChip}</div>
+          <div className='paid-status-chip w-1/3'>{paidStatusChip}</div>
         </div>
       )
     })

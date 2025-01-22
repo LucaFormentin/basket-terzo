@@ -65,7 +65,7 @@
 }
 
 .paid-status-chip {
-  @apply ml-auto w-32;
+  @apply ml-auto w-36;
 }
 
 .paid-status-chip > div {

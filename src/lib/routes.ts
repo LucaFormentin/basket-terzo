@@ -1,5 +1,4 @@
 import { GavelRounded, HomeRounded, SettingsRounded } from '@mui/icons-material'
-import path from 'path'
 
 export const ROUTES: {
   href: string
@@ -22,15 +21,3 @@ export const ROUTES: {
     icon: SettingsRounded,
   },
 ]
-
-export const playersListFilePath = path.join(
-  process.cwd(),
-  'src/data',
-  'players.json'
-)
-
-export const finesListFilePath = path.join(
-  process.cwd(),
-  'src/data',
-  'fines.json'
-)
