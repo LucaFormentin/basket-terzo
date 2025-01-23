@@ -75,7 +75,6 @@ const Settings = () => {
             href='/impostazioni/modifica-giocatori'
             label='Gestisci Giocatori'
             icon={GroupRounded}
-            disabled
           />
         </>
       )}

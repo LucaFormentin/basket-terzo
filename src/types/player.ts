@@ -1,18 +1,21 @@
+import { z } from "zod"
 import { type PlayerFine } from "./fine"
 
-type BaseInfo = {
-  number: number
-  firstName: string
-  lastName: string
-}
+export const PlayerBaseInfoSchema = z.object({
+  number: z.number(),
+  firstName: z.string(),
+  lastName: z.string(),
+})
 
-export type FirebasePlayer = BaseInfo & {
-  key: string
+export type PlayerBaseInfo = z.infer<typeof PlayerBaseInfoSchema>
+
+export type FirebasePlayer = PlayerBaseInfo & {
+  key: string | null
   _id: string
   finesList: PlayerFine[]
 }
 
-export type PlayerInfo = BaseInfo & {
+export type PlayerInfo = PlayerBaseInfo & {
   totalFines: number
   stillToPay: number
   firebaseKey: string | null

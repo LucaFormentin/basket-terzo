@@ -7,8 +7,9 @@ import {
   update,
 } from 'firebase/database'
 import { database } from '../firebase/config'
-import { type FirebasePlayer } from '@/types/player'
+import type { PlayerBaseInfo, FirebasePlayer } from '@/types/player'
 import { type PlayerFine } from '@/types/fine'
+import { generateRandomStr } from '../utils/helpers'
 
 export class PlayersCollection {
   private playersCollection: string
@@ -43,6 +44,18 @@ export class PlayersCollection {
     await set(dataToPushRef, data)
   }
 
+  private initPlayerData = (data: PlayerBaseInfo): FirebasePlayer => ({
+    ...data,
+    _id: generateRandomStr(16),
+    finesList: [],
+    key: null,
+  })
+
+  createPlayer = async (playerData: PlayerBaseInfo) => {
+    const pData = this.initPlayerData(playerData)
+    await this.pushData(pData)
+  }
+
   updateFinesList = async (playerKey: string, newFine: PlayerFine) => {
     const playerRef = this.initPlayerRef(playerKey)
     const playerData = (await this.getSnapshot(playerRef)) as FirebasePlayer
@@ -60,7 +73,10 @@ export class PlayersCollection {
     return playerData.finesList || []
   }
 
-  getFine = async (playerKey: string, fineObjId: string): Promise<PlayerFine | undefined> => {
+  getFine = async (
+    playerKey: string,
+    fineObjId: string
+  ): Promise<PlayerFine | undefined> => {
     const finesList = await this.getFinesListByKey(playerKey)
     let fineIndex = finesList.findIndex((fine) => fine._id === fineObjId)
 
@@ -69,7 +85,7 @@ export class PlayersCollection {
     return finesList[fineIndex]
   }
 
-  convertToPaid = async (playerKey: string, fineObjId: string)=> {
+  convertToPaid = async (playerKey: string, fineObjId: string) => {
     const playerRef = this.initPlayerRef(playerKey)
     const playerData = (await this.getSnapshot(playerRef)) as FirebasePlayer
 
@@ -92,7 +108,9 @@ export class PlayersCollection {
 
     if (fineIndex === -1) return
 
-    let updatedFinesList = finesList.filter((fine, index) => index !== fineIndex)
+    let updatedFinesList = finesList.filter(
+      (fine, index) => index !== fineIndex
+    )
 
     await update(playerRef, { finesList: updatedFinesList })
   }
