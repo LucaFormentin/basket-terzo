@@ -1,11 +1,11 @@
-import { CashCollection } from '@/lib/classes/CashDB'
+import { CashC } from '@/lib/firebase/FirebaseUtils'
 
 export async function GET(
   request: Request,
   { params }: { params: { timestamp: string } }
 ) {
-  const cashCollection = new CashCollection()
-  const cashFlow = await cashCollection.getCashFlow()
+  const cashC = new CashC()
+  const cashFlow = await cashC.getCashFlow()
 
   return new Response(JSON.stringify({ data: cashFlow }))
 }

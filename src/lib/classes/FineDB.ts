@@ -2,6 +2,7 @@ import { get, push, ref, remove, set, type DatabaseReference } from 'firebase/da
 import { database } from '../firebase/config'
 import { type FirebaseFine } from '@/types/fine'
 
+// DA TESTARE IL PORTING DI QUESTA CLASSE
 export class FinesCollection {
   private finesCollection: string
   private dbRef: DatabaseReference
@@ -11,12 +12,14 @@ export class FinesCollection {
     this.dbRef = ref(database, this.finesCollection)
   }
 
+  // ok
   private getSnapshot = async (ref: DatabaseReference) => {
     let snapshot = await get(ref)
 
     return snapshot.exists() ? snapshot.val() : []
   }
 
+  // ok
   getEntries = async (): Promise<FirebaseFine[]> => {
     let fines = await this.getSnapshot(this.dbRef)
 
@@ -26,11 +29,13 @@ export class FinesCollection {
     })) as FirebaseFine[]
   }
 
+  // ok
   pushData = async (data: any) => {
     let dataToPushRef = push(this.dbRef)
     await set(dataToPushRef, data)
   }
 
+  // ok
   deleteData = async (fineId: string) => {
     let fines = await this.getSnapshot(this.dbRef)
 

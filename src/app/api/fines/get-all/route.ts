@@ -1,8 +1,8 @@
-import { FinesCollection } from '@/lib/classes/FineDB'
+import { FineC } from '@/lib/firebase/FirebaseUtils'
 
 export async function GET(request: Request) {
-  const finesCollection = new FinesCollection()
-  const fines = await finesCollection.getEntries()
+  const finesC = new FineC()
+  const fines = await finesC.getFines()
 
   return Response.json({ finesList: fines || [] })
 }

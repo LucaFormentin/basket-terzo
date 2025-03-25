@@ -1,11 +1,11 @@
-import { FinesCollection } from '@/lib/classes/FineDB'
+import { FineC } from '@/lib/firebase/FirebaseUtils'
 
 export async function GET(
   request: Request,
   { params }: { params: { fineId: string } }
-) {  
-  const finesCollection = new FinesCollection()
-  await finesCollection.deleteData(params.fineId)
+) {
+  const finesC = new FineC()
+  await finesC.deleteFine(params.fineId)
   
   return Response.json({ data: 'Multa eliminata!' })
 }

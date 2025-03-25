@@ -1,11 +1,11 @@
-import { PlayersCollection } from "@/lib/classes/PlayerDB"
+import { PlayerC } from "@/lib/firebase/FirebaseUtils"
 import { PlayerBaseInfo } from "@/types/player"
 
 export async function POST(req: Request) {
   const newPlayerData = (await req.json()) as PlayerBaseInfo
-  const playersCollection = new PlayersCollection()
+  const playersC = new PlayerC()
 
-  await playersCollection.createPlayer(newPlayerData)
+  await playersC.createPlayer(newPlayerData)
 
   return Response.json({ data: 'Nuovo giocatore aggiunto!' })
 }

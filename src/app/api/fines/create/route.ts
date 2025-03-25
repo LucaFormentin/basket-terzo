@@ -1,4 +1,4 @@
-import { FinesCollection } from '@/lib/classes/FineDB'
+import { FineC } from '@/lib/firebase/FirebaseUtils'
 import { generateRandomStr } from '@/lib/utils/helpers'
 
 export async function POST(req: Request) {
@@ -11,9 +11,8 @@ export async function POST(req: Request) {
     fineId: generateRandomStr(16),
     ...data,
   }
-
-  const finesCollection = new FinesCollection()
-  await finesCollection.pushData(fineToPush)
+  const finesC = new FineC()
+  await finesC.addFine(fineToPush)
 
   return Response.json({ data: 'Nuova multa creata!' })
 }

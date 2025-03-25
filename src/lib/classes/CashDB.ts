@@ -3,6 +3,7 @@ import { database } from '../firebase/config'
 import { type CashFlowT } from '@/types/player'
 import { PlayersCollection } from './PlayerDB'
 
+// DA TESTARE IL PORTING DI QUESTA CLASSE
 export class CashCollection {
   private cashCollection: string
   private dbRef: DatabaseReference
@@ -12,18 +13,21 @@ export class CashCollection {
     this.dbRef = ref(database, this.cashCollection)
   }
 
+  // ok
   private getSnapshot = async (ref: DatabaseReference) => {
     let snapshot = await get(ref)
 
     return snapshot.exists() ? snapshot.val() : []
   }
 
+  // ok
   getCashFlow = async (): Promise<CashFlowT> => {
     let entries = await this.getSnapshot(this.dbRef)
 
     return entries
   }
 
+  // ok
   calculateCashFlowFromPlayersEntries = async (): Promise<CashFlowT> => {
     const playersCollection = new PlayersCollection()
       const playersData = await playersCollection.getEntries()
@@ -49,8 +53,9 @@ export class CashCollection {
       })
     
       return cashFlow
-  }
+  } 
 
+  // ok
   updateOnNewFineAdd = async (newFineAmount: number) => {
     const currentCashFlow = await this.getCashFlow()
     let updatedMissing = (currentCashFlow.missing += newFineAmount)
@@ -63,6 +68,7 @@ export class CashCollection {
     })
   }
 
+  // ok
   updateOnFinePaid = async (fineAmount: number) => {
     const currentCashFlow = await this.getCashFlow()
     let updatedMissing = currentCashFlow.missing - fineAmount
@@ -75,6 +81,7 @@ export class CashCollection {
     })
   }
 
+  // ok
   updateOnFineDeleted = async (fineAmount: number, isPaid: boolean) => {
     const currentCashFlow = await this.getCashFlow()
     let updatedTotal = currentCashFlow.total - fineAmount

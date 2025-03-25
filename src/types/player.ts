@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { type PlayerFine } from "./fine"
+import { PlayerFineSchema, type PlayerFine } from "./fine"
 
 export const PlayerBaseInfoSchema = z.object({
   number: z.number(),
@@ -9,11 +9,14 @@ export const PlayerBaseInfoSchema = z.object({
 
 export type PlayerBaseInfo = z.infer<typeof PlayerBaseInfoSchema>
 
-export type FirebasePlayer = PlayerBaseInfo & {
-  key: string | null
-  _id: string
-  finesList: PlayerFine[]
-}
+const FirebasePlayerSchema = PlayerBaseInfoSchema.extend({
+  key: z.string().nullable(),
+  _id: z.string(),
+  finesList: z.array(PlayerFineSchema).nullish(),
+})
+
+export const FirebasePlayerListSchema = z.array(FirebasePlayerSchema)
+export type FirebasePlayer = z.infer<typeof FirebasePlayerSchema>
 
 export type PlayerInfo = PlayerBaseInfo & {
   totalFines: number

@@ -1,4 +1,4 @@
-import { PlayersCollection } from '@/lib/classes/PlayerDB'
+import { PlayerFinesC } from '@/lib/firebase/FirebaseUtils'
 
 /**
  * Retrieves the list of fines for a specific player.
@@ -14,11 +14,8 @@ export async function GET(
 ) {
   const playerFirebaseKey = params.playerKey
 
-  const playersCollection = new PlayersCollection()
-
-  const playerFines = await playersCollection.getFinesListByKey(
-    playerFirebaseKey
-  )
+  const playerFinesC = new PlayerFinesC(playerFirebaseKey)
+  const playerFines = await playerFinesC.getPlayerFinesList()
 
   return Response.json({ data: playerFines || [] })
 }

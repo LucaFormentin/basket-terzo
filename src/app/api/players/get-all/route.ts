@@ -1,8 +1,8 @@
-import { PlayersCollection } from '@/lib/classes/PlayerDB'
+import { PlayerC } from '@/lib/firebase/FirebaseUtils'
 
 export async function GET(request: Request) {
-  const playersCollection = new PlayersCollection()
-  const players = await playersCollection.getEntries()
+  const playersC = new PlayerC()
+  const players = await playersC.getPlayer()
 
   return Response.json({ data: players || [] })
 }

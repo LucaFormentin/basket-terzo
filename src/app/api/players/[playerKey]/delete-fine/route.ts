@@ -1,5 +1,4 @@
-import { CashCollection } from '@/lib/classes/CashDB'
-import { PlayersCollection } from '@/lib/classes/PlayerDB'
+import { CashC, PlayerFinesC } from '@/lib/firebase/FirebaseUtils'
 
 export async function GET(
   request: Request,
@@ -10,20 +9,17 @@ export async function GET(
   const fineObjId = searchParams.get('fineObjId') as string
 
   // update player's fines list
-  const playersCollection = new PlayersCollection()
+  const playerFinesC = new PlayerFinesC(playerFirebaseKey)
 
-  const updatedFine = await playersCollection.getFine(
-    playerFirebaseKey,
-    fineObjId
-  )
+  const updatedFine = await playerFinesC.getFineById(fineObjId)
   const { penitence, paid } = updatedFine!
   const fineAmount = parseInt(penitence.split('€')[0])
 
-  await playersCollection.deleteFine(playerFirebaseKey, fineObjId)
+  await playerFinesC.deleteFine(fineObjId)
 
   // update cash flow
-  const cashCollection = new CashCollection()
-  await cashCollection.updateOnFineDeleted(fineAmount, paid)
+  const cashC = new CashC()
+  await cashC.updateOnFineDelete(fineAmount, paid)
   
   return Response.json({ data: 'Multa eliminata' })
 }

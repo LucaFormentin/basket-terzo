@@ -1,13 +1,11 @@
-import { CashCollection } from '@/lib/classes/CashDB'
-import { FinesCollection } from '@/lib/classes/FineDB'
-import { PlayersCollection } from '@/lib/classes/PlayerDB'
+import { CashC, FineC, PlayerFinesC } from '@/lib/firebase/FirebaseUtils'
 import { generateRandomStr } from '@/lib/utils/helpers'
 import type { PlayerFine } from '@/types/fine'
 import moment from 'moment'
 
 const createNewFine = async (fineId: string): Promise<PlayerFine> => {
-  const finesCollection = new FinesCollection()
-  const finesData = await finesCollection.getEntries()
+  const finesC = new FineC()
+  const finesData = await finesC.getFines()
 
   const fine = finesData.find((fine) => fine.fineId === fineId)
 
@@ -45,13 +43,13 @@ export async function GET(
   const newFineToInsert = await createNewFine(fineId)
 
   // update player's fines list
-  const playersCollection = new PlayersCollection()
-  await playersCollection.updateFinesList(playerFirebaseKey, newFineToInsert)
+  const playerFinesC = new PlayerFinesC(playerFirebaseKey)
+  await playerFinesC.addFine(newFineToInsert)
 
   // update cash flow
   const newFineAmount = parseInt(newFineToInsert.penitence.split('€')[0])
-  const cashCollection = new CashCollection()
-  await cashCollection.updateOnNewFineAdd(newFineAmount)
+  const cashC = new CashC()
+  await cashC.updateOnFineAdd(newFineAmount)
 
   return Response.json({ data: 'Nuova multa aggiunta!' })
 }
