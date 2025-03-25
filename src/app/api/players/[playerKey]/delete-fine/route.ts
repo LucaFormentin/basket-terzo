@@ -1,4 +1,5 @@
-import { CashC, PlayerFinesC } from '@/lib/firebase/FirebaseUtils'
+import { CashC } from "@/lib/classes/Cash"
+import { PlayerFinesC } from "@/lib/classes/Player"
 
 export async function GET(
   request: Request,

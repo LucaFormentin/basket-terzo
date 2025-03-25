@@ -1,4 +1,4 @@
-import { FineC } from '@/lib/firebase/FirebaseUtils'
+import { FineC } from '@/lib/classes/Fine'
 import { generateRandomStr } from '@/lib/utils/helpers'
 
 export async function POST(req: Request) {

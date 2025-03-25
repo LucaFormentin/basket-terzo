@@ -1,4 +1,4 @@
-import { PlayerFinesC } from '@/lib/firebase/FirebaseUtils'
+import { PlayerFinesC } from "@/lib/classes/Player"
 
 /**
  * Retrieves the list of fines for a specific player.

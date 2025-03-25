@@ -1,4 +1,6 @@
-import { CashC, FineC, PlayerFinesC } from '@/lib/firebase/FirebaseUtils'
+import { CashC } from '@/lib/classes/Cash'
+import { FineC } from '@/lib/classes/Fine'
+import { PlayerFinesC } from '@/lib/classes/Player'
 import { generateRandomStr } from '@/lib/utils/helpers'
 import type { PlayerFine } from '@/types/fine'
 import moment from 'moment'

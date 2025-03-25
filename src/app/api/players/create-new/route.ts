@@ -1,4 +1,4 @@
-import { PlayerC } from "@/lib/firebase/FirebaseUtils"
+import { PlayerC } from "@/lib/classes/Player"
 import { PlayerBaseInfo } from "@/types/player"
 
 export async function POST(req: Request) {

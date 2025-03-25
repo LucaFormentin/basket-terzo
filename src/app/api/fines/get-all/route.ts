@@ -1,4 +1,4 @@
-import { FineC } from '@/lib/firebase/FirebaseUtils'
+import { FineC } from "@/lib/classes/Fine"
 
 export async function GET(request: Request) {
   const finesC = new FineC()

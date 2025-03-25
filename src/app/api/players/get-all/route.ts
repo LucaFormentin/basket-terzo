@@ -1,4 +1,4 @@
-import { PlayerC } from '@/lib/firebase/FirebaseUtils'
+import { PlayerC } from "@/lib/classes/Player"
 
 export async function GET(request: Request) {
   const playersC = new PlayerC()
