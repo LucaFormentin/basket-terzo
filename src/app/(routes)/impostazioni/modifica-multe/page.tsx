@@ -1,10 +1,10 @@
 import { Container } from '@mui/material'
 import FinesManager from '@/components/Settings/FinesManager'
-import { FinesCollection } from '@/lib/classes/FineDB'
+import { FineC } from '@/lib/classes/Fine'
 
 const ModificaMultePage = async () => {
-  const finesCollection = new FinesCollection()
-  const fines = await finesCollection.getEntries()
+  const finesCollection = new FineC()
+  const fines = await finesCollection.getFines()
 
   return (
     <Container maxWidth='xl' sx={{ my: 1, height: '100%' }}>

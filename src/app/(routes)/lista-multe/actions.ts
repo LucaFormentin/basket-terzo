@@ -1,5 +1,5 @@
-import { FinesCollection } from '@/lib/classes/FineDB'
-import { PlayersCollection } from '@/lib/classes/PlayerDB'
+import { FineC } from '@/lib/classes/Fine'
+import { PlayerC } from '@/lib/classes/Player'
 import { type FirebaseFine } from '@/types/fine'
 import type { PlayerInfo } from '@/types/player'
 
@@ -9,15 +9,15 @@ import type { PlayerInfo } from '@/types/player'
  * @returns {Promise<FirebaseFine[]>} A promise that resolves to an array of FirebaseFine objects.
  */
 export const getFines = async (): Promise<FirebaseFine[]> => {
-  const finesCollection = new FinesCollection()
-  const fines = await finesCollection.getEntries()
+  const finesCollection = new FineC()
+  const fines = await finesCollection.getFines()
 
   return fines
 }
 
 export const getPlayersInfo = async (): Promise<PlayerInfo[] | null> => {
-  const playersCollection = new PlayersCollection()
-  const players = await playersCollection.getEntries()
+  const playersCollection = new PlayerC()
+  const players = await playersCollection.getPlayer()
 
   if (!players || players.length === 0) return null
 

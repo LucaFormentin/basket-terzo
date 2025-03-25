@@ -1,10 +1,10 @@
 import PlayersManager from '@/components/Settings/PlayersManager'
-import { PlayersCollection } from '@/lib/classes/PlayerDB'
+import { PlayerC } from '@/lib/classes/Player'
 import { Container } from '@mui/material'
 
 const ModificaGiocatoriPage = async () => {
-  const playersCollection = new PlayersCollection()
-  const playersEntries = await playersCollection.getEntries()
+  const playersCollection = new PlayerC()
+  const playersEntries = await playersCollection.getPlayer()
 
   if (!playersEntries || playersEntries.length === 0)
     return <p>Crea nuovo giocatore</p>
