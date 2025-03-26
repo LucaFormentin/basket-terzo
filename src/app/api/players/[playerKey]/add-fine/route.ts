@@ -36,9 +36,9 @@ const createNewFine = async (fineId: string): Promise<PlayerFine> => {
  */
 export async function GET(
   request: Request,
-  { params }: { params: { playerKey: string } }
+  { params }: { params: Promise<{ playerKey: string }> }
 ) {
-  const playerFirebaseKey = params.playerKey
+  const { playerKey: playerFirebaseKey } = await params
   const { searchParams } = new URL(request.url)
   const fineId = searchParams.get('fineId') as string
 

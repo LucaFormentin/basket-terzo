@@ -10,9 +10,9 @@ import { PlayerFinesC } from "@/lib/classes/Player"
  */
 export async function GET(
   request: Request,
-  { params }: { params: { playerKey: string } }
+  { params }: { params: Promise<{ playerKey: string }> }
 ) {
-  const playerFirebaseKey = params.playerKey
+  const { playerKey: playerFirebaseKey } = await params
 
   const playerFinesC = new PlayerFinesC(playerFirebaseKey)
   const playerFines = await playerFinesC.getPlayerFinesList()

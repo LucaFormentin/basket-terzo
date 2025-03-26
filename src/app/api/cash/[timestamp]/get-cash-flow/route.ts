@@ -1,8 +1,8 @@
-import { CashC } from "@/lib/classes/Cash"
+import { CashC } from '@/lib/classes/Cash'
 
 export async function GET(
   request: Request,
-  { params }: { params: { timestamp: string } }
+  { params }: { params: Promise<{ timestamp: string }> }
 ) {
   const cashC = new CashC()
   const cashFlow = await cashC.getCashFlow()
