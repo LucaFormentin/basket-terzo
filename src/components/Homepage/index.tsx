@@ -22,7 +22,7 @@ const Homepage = () => {
         <h1 className='text-5xl font-bold text-center'>Basket Terzo</h1>
         <h1 className='text-base text-center'>Web App</h1>
       </div>
-      <AnimatePresence mode='wait'>
+      <AnimatePresence mode='wait' initial={false}>
         {showLoginPanel ? (
           <LoginPanel key='login-panel' onLoginExit={() => setShowLoginPanel(false)} />
         ) : (

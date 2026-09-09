@@ -1,6 +1,5 @@
 'use client'
 
-import useMiddleware from '@/hooks/useMiddleware'
 import {
   GavelRounded,
   GroupRounded,
@@ -58,7 +57,6 @@ const MenuItem = (props: MenuItemProps) => {
 }
 
 const Settings = () => {
-  useMiddleware()
   const { role } = useUserCtx()
 
   return (

@@ -8,7 +8,7 @@ import React from 'react'
 const Footer = () => {
   const pathname = usePathname()
 
-  const routesNavActions = ROUTES.map((route, index) => {
+  const routesNavActions = ROUTES.map((route) => {
     /**
      * Checks if the current pathname matches the given route's href
      * or if the route's href is not the root ('/') and the pathname starts with the route's href.
@@ -19,16 +19,16 @@ const Footer = () => {
 
     return (
       <BottomNavigationAction
-        key={index}
+        key={route.href}
         LinkComponent={Link}
         href={route.href}
         label={route.label}
         icon={<route.icon />}
-        disabled={pathname === route.href}
+        aria-current={isCurrentRoute ? 'page' : undefined}
         showLabel
         className={cn(
-          'rounded-3xl hover:bg-blue-800/40',
-          isCurrentRoute && 'bg-blue-800'
+          'min-w-0 rounded-3xl transition-colors hover:bg-blue-800/40',
+          isCurrentRoute && 'bg-blue-800 text-white'
         )}
       />
     )
@@ -38,8 +38,9 @@ const Footer = () => {
     <BottomNavigation
       component={'footer'}
       className={cn(
-        'fixed bottom-0 left-0 right-0 bg-blue-950 h-14',
-        'gap-3 p-1 rounded-t-3xl'
+        'app-footer fixed left-3 right-3 z-50 mx-auto h-16 max-w-md',
+        'gap-1 rounded-2xl border border-blue-800/60 bg-blue-950/90 p-2',
+        'shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-md'
       )}
     >
       {routesNavActions}

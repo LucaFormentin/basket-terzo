@@ -4,8 +4,7 @@ import { useUserCtx } from '@/app/context/UserContext'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
-
-const middlewareMatcherConfig = ['/lista-multe', '/impostazioni']
+import { canAccessRoute, getRequiredRole } from '@/lib/auth/access-control'
 
 /**
  * Custom hook that applies middleware logic based on the user's role and the current pathname.
@@ -16,23 +15,26 @@ const middlewareMatcherConfig = ['/lista-multe', '/impostazioni']
  *
  */
 const useMiddleware = () => {
-  const { role } = useUserCtx()
+  const { role, isReady } = useUserCtx()
   const router = useRouter()
   const pathname = usePathname()
+  const canAccess = isReady && canAccessRoute(pathname, role)
 
   useEffect(() => {
-    middlewareMatcherConfig.forEach((route) => {
-      if (route !== pathname) return
+    if (!isReady || canAccess) return
 
-      if (!role) {
-        toast.error('Utente non autorizzato!')
-        router.push('/')
-        return
-      }
-    })
-  }, [])
+    const requiredRole = getRequiredRole(pathname)
+    const isMissingAdminRole = requiredRole === 'ADMIN' && role === 'GUEST'
 
-  return null
+    toast.error(
+      isMissingAdminRole
+        ? 'Permessi insufficienti!'
+        : 'Utente non autorizzato!'
+    )
+    router.replace(isMissingAdminRole ? '/impostazioni' : '/')
+  }, [canAccess, isReady, pathname, role, router])
+
+  return canAccess
 }
 
 export default useMiddleware

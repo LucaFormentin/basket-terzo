@@ -5,7 +5,7 @@ export async function GET(
   { params }: { params: Promise<{ timestamp: string }> }
 ) {
   const cashC = new CashC()
-  const cashFlow = await cashC.getCashFlow()
+  const cashFlow = await cashC.calculateCashFlowFromPlayersEntries()
 
   return new Response(JSON.stringify({ data: cashFlow }))
 }

@@ -3,6 +3,7 @@ import { api } from "@/lib/api-client"
 import { type PlayerFine } from "@/types/fine"
 import { Collapse } from "@mui/material"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
+import toast from 'react-hot-toast'
 import PlayerHistoryTable from "./PlayerHistoryTable"
 
 type Props = {
@@ -20,37 +21,44 @@ const PlayerHistoryRow = (props: Props) => {
     enabled: !!props.playerFirebaseKey && props.openHistory,
   })
 
-  const convertToPaidFine = (fineObjId: string) => {
-    api
-      .get(`/players/${props.playerFirebaseKey}/convert-to-paid`, {
-        params: { fineObjId },
-      })
-      .finally(() => {
-        // invalidate query to refetch data in the history
-        queryClient.invalidateQueries({
-          queryKey: ['finesList', props.playerFirebaseKey],
-        })
+  const refreshPlayerData = async () => {
+    updatePlayerStatus(props.playerFirebaseKey, false)
 
-        // update player status to refetch data in the info row
-        updatePlayerStatus(props.playerFirebaseKey, false)
+    try {
+      await queryClient.invalidateQueries({
+        queryKey: ['finesList', props.playerFirebaseKey],
       })
+    } catch {
+      toast.error('Operazione completata, ma i dati non sono stati aggiornati')
+    }
   }
 
-  const deleteFine = (fineObjId: string) => {
-    api
-      .get(`/players/${props.playerFirebaseKey}/delete-fine`, {
+  const convertToPaidFine = async (fineObjId: string) => {
+    try {
+      await api.get(`/players/${props.playerFirebaseKey}/convert-to-paid`, {
         params: { fineObjId },
       })
-      .finally(() => {
-        // invalidate query to refetch data in the history
-        queryClient.invalidateQueries({
-          queryKey: ['finesList', props.playerFirebaseKey],
-        })
+    } catch {
+      toast.error('Errore durante il pagamento della multa')
+      return
+    }
 
-        // update player status to refetch data in the info row
-        updatePlayerStatus(props.playerFirebaseKey, false)
+    toast.success('Multa segnata come pagata!')
+    await refreshPlayerData()
+  }
+
+  const deleteFine = async (fineObjId: string) => {
+    try {
+      await api.get(`/players/${props.playerFirebaseKey}/delete-fine`, {
+        params: { fineObjId },
       })
-    
+    } catch {
+      toast.error('Errore durante l’eliminazione della multa')
+      return
+    }
+
+    toast.success('Multa eliminata!')
+    await refreshPlayerData()
   }
 
   const renderFeedback = () => {

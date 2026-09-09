@@ -9,10 +9,20 @@ export const PlayerBaseInfoSchema = z.object({
 
 export type PlayerBaseInfo = z.infer<typeof PlayerBaseInfoSchema>
 
+export const PlayerFinesListSchema = z.preprocess(
+  (value) => {
+    if (value == null) return []
+    if (Array.isArray(value)) return value.filter(Boolean)
+    if (typeof value === 'object') return Object.values(value)
+    return value
+  },
+  z.array(PlayerFineSchema)
+)
+
 const FirebasePlayerSchema = PlayerBaseInfoSchema.extend({
   key: z.string().nullable(),
   _id: z.string(),
-  finesList: z.array(PlayerFineSchema).nullish(),
+  finesList: PlayerFinesListSchema,
 })
 
 export const FirebasePlayerListSchema = z.array(FirebasePlayerSchema)

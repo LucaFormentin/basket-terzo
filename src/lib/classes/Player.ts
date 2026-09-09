@@ -1,11 +1,11 @@
-import { DatabaseReference, ref, update } from 'firebase/database'
+import { DatabaseReference, ref, remove, set, update } from 'firebase/database'
 import {
   type FirebasePlayer,
   FirebasePlayerListSchema,
   type PlayerBaseInfo,
 } from '@/types/player'
 import { generateRandomStr } from '../utils/helpers'
-import { type PlayerFine } from '@/types/fine'
+import { PlayerFineSchema, type PlayerFine } from '@/types/fine'
 import { FirebaseUtils } from '../firebase/FirebaseUtils'
 
 export class PlayerC extends FirebaseUtils {
@@ -57,51 +57,81 @@ export class PlayerFinesC extends PlayerC {
     this.playerRef = ref(this.db, `${this.coll}/${this.playerKey}`)
   }
 
-  private findFineIndexById = async (fineId: string) => {
-    let playerFines = await this.getPlayerFinesList()
-    return playerFines.findIndex((fine) => fine._id === fineId)
+  private getPlayerFinesEntries = async () => {
+    const playerData = (await this.getSnapshot(this.playerRef)) as {
+      finesList?: unknown
+    }
+    const rawFines = playerData.finesList
+
+    if (!rawFines || typeof rawFines !== 'object') return []
+
+    return Object.entries(rawFines).map(([storageKey, value]) => {
+      const parsedFine = PlayerFineSchema.safeParse(value)
+
+      if (!parsedFine.success) throw new Error(parsedFine.error.message)
+
+      return { storageKey, fine: parsedFine.data }
+    })
+  }
+
+  private findFineEntryById = async (fineId: string) => {
+    const entries = await this.getPlayerFinesEntries()
+    return entries.find(({ fine }) => fine._id === fineId) ?? null
   }
 
   getPlayerFinesList = async (): Promise<PlayerFine[]> => {
-    let playerData = (await this.getSnapshot(this.playerRef)) as FirebasePlayer
-    return playerData.finesList || []
+    const entries = await this.getPlayerFinesEntries()
+    return entries.map(({ fine }) => fine)
   }
 
   getFineById = async (fineId: string): Promise<PlayerFine | null> => {
-    let playerFines = await this.getPlayerFinesList()
-    let fineIndex = await this.findFineIndexById(fineId)
-
-    return fineIndex === -1 ? null : playerFines[fineIndex]
+    const entry = await this.findFineEntryById(fineId)
+    return entry?.fine ?? null
   }
 
   addFine = async (newFineData: PlayerFine) => {
-    let playerFines = await this.getPlayerFinesList()
-    let updatedFines = [...playerFines, newFineData]
-
-    await update(this.playerRef, { finesList: updatedFines })
+    const fineRef = ref(
+      this.db,
+      `${this.coll}/${this.playerKey}/finesList/${newFineData._id}`
+    )
+    await set(fineRef, newFineData)
   }
 
   deleteFine = async (fineId: string) => {
-    let playerFines = await this.getPlayerFinesList()
-    let fineIndex = await this.findFineIndexById(fineId)
+    const entry = await this.findFineEntryById(fineId)
 
-    if (fineIndex === -1) return
+    if (!entry) return false
 
-    let updatedFinesList = playerFines.filter(
-      (fine, index) => index !== fineIndex
+    const fineRef = ref(
+      this.db,
+      `${this.coll}/${this.playerKey}/finesList/${entry.storageKey}`
     )
+    await remove(fineRef)
 
-    await update(this.playerRef, { finesList: updatedFinesList })
+    return true
   }
 
   convertToPaid = async (fineId: string) => {
-    let playerFines = await this.getPlayerFinesList()
-    let fineIndex = await this.findFineIndexById(fineId)
+    const entry = await this.findFineEntryById(fineId)
 
-    if (fineIndex === -1) return
+    if (!entry) return null
+    if (entry.fine.paid) return entry.fine
 
-    playerFines[fineIndex].paid = true
+    const paidFine = { ...entry.fine, paid: true }
 
-    await update(this.playerRef, { finesList: playerFines })
+    if (entry.storageKey === fineId) {
+      const fineRef = ref(
+        this.db,
+        `${this.coll}/${this.playerKey}/finesList/${fineId}`
+      )
+      await set(fineRef, paidFine)
+    } else {
+      await update(this.playerRef, {
+        [`finesList/${entry.storageKey}`]: null,
+        [`finesList/${fineId}`]: paidFine,
+      })
+    }
+
+    return paidFine
   }
 }

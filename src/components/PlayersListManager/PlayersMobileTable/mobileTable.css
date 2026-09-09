@@ -1,3 +1,5 @@
+@reference 'tailwindcss';
+
 .center-item {
   @apply flex items-center justify-center;
 }
@@ -12,7 +14,7 @@
 
 /** Player Info Row */
 .player-info-row {
-  @apply p-3 border-2 rounded-md border-blue-800 center-item gap-2;
+  @apply p-3 border-2 rounded-md border-blue-800 flex items-center justify-center gap-2;
 }
 
 .player-number {
@@ -44,7 +46,7 @@
 }
 
 .player-fines > span {
-  @apply w-6 h-6 rounded-full center-item;
+  @apply w-6 h-6 rounded-full flex items-center justify-center;
 }
 
 /** Player History Row */

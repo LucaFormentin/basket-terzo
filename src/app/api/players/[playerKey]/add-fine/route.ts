@@ -1,4 +1,3 @@
-import { CashC } from '@/lib/classes/Cash'
 import { FineC } from '@/lib/classes/Fine'
 import { PlayerFinesC } from '@/lib/classes/Player'
 import { generateRandomStr } from '@/lib/utils/helpers'
@@ -47,11 +46,6 @@ export async function GET(
   // update player's fines list
   const playerFinesC = new PlayerFinesC(playerFirebaseKey)
   await playerFinesC.addFine(newFineToInsert)
-
-  // update cash flow
-  const newFineAmount = parseInt(newFineToInsert.penitence.split('€')[0])
-  const cashC = new CashC()
-  await cashC.updateOnFineAdd(newFineAmount)
 
   return Response.json({ data: 'Nuova multa aggiunta!' })
 }

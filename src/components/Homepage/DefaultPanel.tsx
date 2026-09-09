@@ -27,7 +27,7 @@ const DefaultPanel = (props: Props) => {
       <span>Accedi come:</span>
       <Button
         endIcon={<AdminPanelSettingsRounded />}
-        className='bg-blue-800 p-4 rounded-3xl w-3/4'
+        className='bg-blue-800 p-4 rounded-3xl w-3/4 text-white'
         onClick={props.onAdminClick}
       >
         <span className='capitalize text-base font-normal'>Admin</span>
@@ -36,7 +36,7 @@ const DefaultPanel = (props: Props) => {
         component={Link}
         href='/lista-multe'
         endIcon={<AccessibilityRounded />}
-        className='bg-blue-800 p-4 rounded-3xl w-3/4'
+        className='bg-blue-800 p-4 rounded-3xl w-3/4 text-white'
         onClick={() => {
           setRole('GUEST')
           toast.success('Loggato come Ospite!')

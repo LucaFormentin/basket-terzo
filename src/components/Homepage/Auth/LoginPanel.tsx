@@ -97,7 +97,7 @@ const LoginPanel = (props: Props) => {
           children={([errorMap]) =>
             errorMap.onSubmit ? (
               <div>
-                <em>Error: {errorMap.onSubmit.toString()}</em>
+                <em>Error: {String(errorMap.onSubmit)}</em>
               </div>
             ) : null
           }

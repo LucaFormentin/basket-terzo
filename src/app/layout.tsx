@@ -6,12 +6,9 @@ import theme from '@/style/theme'
 import { Metadata } from 'next'
 import { AppProvider } from './provider'
 import './globals.css'
-import { Inter } from 'next/font/google'
 import { UserContextProvider } from './context/UserContext'
 import { PlayerContextProvider } from './context/PlayerContext'
 import { Toaster } from 'react-hot-toast'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Basket Terzo App',
@@ -22,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body>
         <AppProvider>
           <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <ThemeProvider theme={theme}>

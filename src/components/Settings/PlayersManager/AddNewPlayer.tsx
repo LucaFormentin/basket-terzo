@@ -24,14 +24,12 @@ const AddNewPlayer = (props: Props) => {
 
         if (!parsedData.success) throw new Error('Invalid form data')
 
-        api.post('/players/create-new', formData.value).finally(() => {
-          toast.success('Giocatore creato!')
-          setIsFormOpen(false)
-          playerCreactionForm.reset()
+        await api.post('/players/create-new', parsedData.data)
 
-          // revalidate players list query
-          props.onPlayerCreated()
-        })
+        toast.success('Giocatore creato!')
+        setIsFormOpen(false)
+        playerCreactionForm.reset()
+        props.onPlayerCreated()
       } catch (error) {
         toast.error('Errore nella creazione del giocatore')
       }

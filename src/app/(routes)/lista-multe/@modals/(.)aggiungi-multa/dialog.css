@@ -1,3 +1,5 @@
+@reference 'tailwindcss';
+
 .container {
   @apply bg-zinc-950 border-2 rounded-md border-blue-800;
 }
@@ -15,7 +17,7 @@
 }
 
 #actions > button {
-  @apply text-white p-2 border rounded-md border-blue-950 disabled:text-opacity-20;
+  @apply text-white p-2 border rounded-3xl border-blue-950 disabled:text-white/20;
 }
 
 #select-fine-btn {

@@ -18,14 +18,12 @@ const AddNewFine = (props: Props) => {
     },
     onSubmit: async (formData) => {
       try {
-        api.post('/fines/create', formData.value).finally(() => {
-          toast.success('Multa creata!')
-          setIsFormOpen(false)
-          form.reset()
+        await api.post('/fines/create', formData.value)
 
-          // revalidate fines list query
-          props.onFineCreated()
-        })
+        toast.success('Multa creata!')
+        setIsFormOpen(false)
+        form.reset()
+        props.onFineCreated()
       } catch (error) {
         toast.error('Errore nella creazione della multa')
       }
